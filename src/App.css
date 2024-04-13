@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.container img {
+  width: 100%;
+  max-width: 1360px; /* Подстроить под свои нужды */
+  height: auto;
+}
