@@ -3,7 +3,10 @@ import mapAreas from './resourse/mapAreas'
 
 const ImageMap = () => {
     const [selectedBrick, setSelectedBrick] = useState('');
+    const [tooltip, setTooltip] = useState({ visible: false, text: '', x: 0, y: 0 });
     const imgRef = useRef(null);  // Reference to the image element
+    const [highlightedArea, setHighlightedArea] = useState(null);
+
 
     useEffect(() => {
         window.addEventListener('resize', updateCoords);
@@ -33,9 +36,14 @@ const ImageMap = () => {
         });
     };
 
-    const handleAreaClick = (brick) => {
-        setSelectedBrick(`brick ${brick}`);
+    const handleAreaClick = (brick, event) => {
+        setSelectedBrick(`brick ${brick.id}`);
+        const rect = imgRef.current.getBoundingClientRect();
+        const x = event.clientX ; // x position within the image
+        const y = event.clientY;  // y position within the image
+        setTooltip({ visible: true, x, y, text: `Brick ${brick.id}` });
     };
+    
 
     return (
         <div className="container">
@@ -46,9 +54,15 @@ const ImageMap = () => {
                 <map name="Map" id="Map">
                     {/* Make sure to include the `data-original-coords` attribute for each area */}
                     {mapAreas.map(function(object, i) {
-                         return <area alt="Brick {object.id}" onClick={() => handleAreaClick(object.id)} shape="poly" 
-                            coords={object.coord} data-original-coords={object.coord} />;                       
+                        return <area alt={`Brick ${object.id}`} onClick={(event) => handleAreaClick(object, event)} shape="poly" 
+                            coords={object.coord} data-original-coords={object.coord} key={object.id}/>;
                     })}
+
+                    {tooltip.visible && (
+                        <div className="tooltip" style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px` }}>
+                            {tooltip.text}
+                        </div>
+                    )}                    
                 </map>
             </div>
             <div className="selection">
