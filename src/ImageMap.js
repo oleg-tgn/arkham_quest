@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import mapAreas from './resourse/mapAreas'
+import arkhemMap from './img/arkhemMap.jpg'
 
 const ImageMap = () => {
     const [selectedBrick, setSelectedBrick] = useState('');
@@ -21,7 +22,7 @@ const ImageMap = () => {
             return;
         }
 
-        const originalWidth = 1360;  // Replace with the original width of your image
+        const originalWidth = 3520;//1360;  // Replace with the original width of your image
         const currentWidth = imgRef.current.offsetWidth;  // Current width of the image
         const scale = currentWidth / originalWidth;  // Scaling factor
 
@@ -36,27 +37,32 @@ const ImageMap = () => {
         });
     };
 
-    const handleAreaClick = (brick, event) => {
-        setSelectedBrick(`brick ${brick.id}`);
+    const handleAreaClick = (key, object, event) => {
+        setSelectedBrick(`brick ${key}`);
         const rect = imgRef.current.getBoundingClientRect();
-        const x = event.clientX ; // x position within the image
-        const y = event.clientY;  // y position within the image
-        setTooltip({ visible: true, x, y, text: `Brick ${brick.id}` });
+        const x = event.clientX - rect.left; // x position within the image
+        const y = event.clientY - rect.top;  // y position within the image
+
+        setTooltip({ visible: true, x, y, text: `${key} - ${object.name}` });
     };
     
 
     return (
         <div className="container">
             <div className="pyramid">
-                <img ref={imgRef} src="https://res.cloudinary.com/positionrelativ/image/upload/v1492379605/pyramid_1_fu4idd.png"
+            
+                <img ref={imgRef} src={arkhemMap}
                      useMap="#Map" alt="Pyramid" />
+
+                {/* <img ref={imgRef} src="https://res.cloudinary.com/positionrelativ/image/upload/v1492379605/pyramid_1_fu4idd.png"
+                     useMap="#Map" alt="Pyramid" /> */}
 
                 <map name="Map" id="Map">
                     {/* Make sure to include the `data-original-coords` attribute for each area */}
-                    {mapAreas.map(function(object, i) {
-                        return <area alt={`Brick ${object.id}`} onClick={(event) => handleAreaClick(object, event)} shape="poly" 
-                            coords={object.coord} data-original-coords={object.coord} key={object.id}/>;
-                    })}
+                    {Object.entries(mapAreas).map(([key, object]) => (
+                        <area alt={`Brick ${object.id}`} onClick={(event) => handleAreaClick(key, object, event)} shape="poly" 
+                            coords={object.coord} data-original-coords={object.coord} key={key}/>
+                    ))}
 
                     {tooltip.visible && (
                         <div className="tooltip" style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px` }}>
@@ -65,9 +71,9 @@ const ImageMap = () => {
                     )}                    
                 </map>
             </div>
-            <div className="selection">
+            {/* <div className="selection">
                 <p>{selectedBrick || 'click a brick'}</p>
-            </div>
+            </div> */}
         </div>
     );
 }

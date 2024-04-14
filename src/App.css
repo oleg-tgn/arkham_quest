@@ -39,24 +39,28 @@
 
 .container img {
   width: 100%;
-  max-width: 1360px; /* Подстроить под свои нужды */
+  max-width: 3520px; /* Подстроить под свои нужды */
   height: auto;
 }
 
 .container img {
   width: 100%;
-  max-width: 1360px;
+  max-width: 3520px;
   height: auto;
 }
 
 .container img {
   width: 100%;
-  max-width: 1360px;
+  max-width: 3520px;
   height: auto;
 }
+
+/* .pyramid {
+  position: relative;
+} */
 
 .tooltip {
-  position: fixed;
+  position: absolute;
   background-color: rgba(255, 165, 0, 0.7); /* Желто-оранжевый полупрозрачный фон */
   padding: 8px 15px;
   border-radius: 5px;
@@ -64,6 +68,7 @@
   white-space: nowrap;
   transform: translate(-50%, -100%); /* Центрирование и поднятие над точкой клика */
   pointer-events: none; /* Позволяет кликам проходить через тултип */
+  z-index: 100;
 }
 
 .selection p {
