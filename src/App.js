@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import ImageMap from './ImageMap'
-import GameDialog from './GameDialog';
+import GameDialog from './components/GameDialog';
 
 function App() {
   return (
@@ -11,12 +9,12 @@ function App() {
       </header>
 
       <div className='container'>
-        <div className='col'>
+        <div className='col-65'>
           <GameDialog />
         </div>
-        <div className='col'>
+        {/* <div className='col'> */}
           {/* <ImageMap /> */}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

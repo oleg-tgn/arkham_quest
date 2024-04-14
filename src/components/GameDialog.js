@@ -1,4 +1,4 @@
-import GameLog from "./resourse/GameLog";
+import GameLog from "../resourse/GameLog";
 
 function GameDialog() {
 
@@ -16,7 +16,7 @@ function GameDialog() {
             })}
         </div>            
         <form className="form">
-            <input type="text" className="input"/>
+            <input type="text" className="input" placeholder="Напишите код локации, например 'A1'"/>
             <button className="button">Перейти в локацию</button>
         </form>        
     </div>        

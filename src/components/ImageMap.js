@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import mapAreas from './resourse/mapAreas'
-import arkhemMap from './img/arkhemMap.jpg'
+import mapAreas from '../resourse/mapAreas'
+import arkhemMap from '../img/arkhemMap.jpg'
 
 const ImageMap = () => {
     const [selectedBrick, setSelectedBrick] = useState('');
