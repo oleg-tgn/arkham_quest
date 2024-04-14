@@ -45,14 +45,18 @@ const ImageMap = () => {
 
         setTooltip({ visible: true, x, y, text: `${key} - ${object.name}` });
     };
-    
+
+    const handleImageLoaded = () => {
+        updateCoords();  // This will now be called when the image is fully loaded
+    };    
 
     return (
         <div className="container">
             <div className="pyramid">
             
                 <img ref={imgRef} src={arkhemMap}
-                     useMap="#Map" alt="Pyramid" />
+                    useMap="#Map" alt="Pyramid"
+                    onLoad={handleImageLoaded} />
 
                 {/* <img ref={imgRef} src="https://res.cloudinary.com/positionrelativ/image/upload/v1492379605/pyramid_1_fu4idd.png"
                      useMap="#Map" alt="Pyramid" /> */}
