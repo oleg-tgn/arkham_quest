@@ -7,7 +7,14 @@ function GameDialog(props) {
     const [initialized, setInitialized] = useState(false);
 
     function handleNewLocation(event) {
+        event.preventDefault();
+
         const value = inputRef.current.value;
+        if (/[^а-яА-Я0-9\s]/.test(value)) {
+            alert('Пожалуйста, используйте русскую раскладку');
+            return;
+        }
+
         const newId = gameLog[gameLog.length - 1].id + 1;
         const newLogEntry = {
             id: newId,
@@ -46,12 +53,11 @@ function GameDialog(props) {
                     )
                 })}
             </div>            
-            <div className="form">
+            <form onSubmit={handleNewLocation} className="form">
                 <input type="text" className="input" placeholder="Напишите код локации, например 'A1'"
                     ref={inputRef}/>
-                <button className="button"
-                    onClick={handleNewLocation}>Перейти в локацию</button>
-            </div>        
+                <button type="submit" className="button">Перейти в локацию</button>
+            </form>        
         </div>        
     )
 }
