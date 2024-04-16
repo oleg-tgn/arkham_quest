@@ -10,7 +10,8 @@ function GameDialog(props) {
     function handleNewLocation(event) {
         event.preventDefault();
 
-        const value = inputRef.current.value;
+        const value = inputRef.current.value.toUpperCase();
+                
         if (/[^а-яА-Я0-9\s]/.test(value)) {
             alert('Пожалуйста, используйте русскую раскладку');
             return;
@@ -35,7 +36,7 @@ function GameDialog(props) {
                 id: newId,
                 title: null,
                 subtitle: null,
-                body: `<i>В локации ${value} вы не нашли никаких зацепок</i>` // Текстовое представление перехода
+                body: `<i>В локации ${value} вы не нашли никаких зацепок.</i>` // Текстовое представление перехода
             };
             setGameLog([...gameLog, errorLogEntry]);
         }

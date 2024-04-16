@@ -130,7 +130,7 @@ area {
 }
 
 .log-text {
-  height: calc(100vh - 250px);
+  height: calc(100vh - 238px);
   padding: 15px 0;
   overflow-y: auto;
   scroll-behavior: smooth;
