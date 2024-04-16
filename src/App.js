@@ -1,5 +1,6 @@
 import './App.css';
 import GameDialog from './components/GameDialog';
+import GameLog from "./resourse/GameLog";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
 
       <div className='container'>
         <div className='col-65'>
-          <GameDialog />
+          <GameDialog
+            GameLog={GameLog} />
         </div>
         {/* <div className='col'> */}
           {/* <ImageMap /> */}
