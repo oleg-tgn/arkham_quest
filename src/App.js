@@ -1,6 +1,7 @@
 import './App.css';
 import GameDialog from './components/GameDialog';
 import GameLog from "./resourse/GameLog";
+import QuestLocations from "./resourse/QuestLocations";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       <div className='container'>
         <div className='col-65'>
           <GameDialog
-            GameLog={GameLog} />
+            GameLog={GameLog} 
+            QuestLocations={QuestLocations}
+          />
         </div>
         {/* <div className='col'> */}
           {/* <ImageMap /> */}

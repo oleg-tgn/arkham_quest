@@ -4,6 +4,7 @@ function GameDialog(props) {
     const inputRef = useRef(null);
     const logTextRef = useRef(null);
     const [gameLog, setGameLog] = useState(props.GameLog);
+
     const [initialized, setInitialized] = useState(false);
 
     function handleNewLocation(event) {
@@ -24,6 +25,19 @@ function GameDialog(props) {
         };
     
         setGameLog([...gameLog, newLogEntry]);
+
+        const nextLocation = props.QuestLocations[value];
+        if (nextLocation) {
+            setGameLog([...gameLog, { ...nextLocation, id: newId + 2 }]);
+        } else {
+            const errorLogEntry = {
+                id: newId,
+                title: null,
+                subtitle: null,
+                body: `<i>В локации ${value} вы не нашли никаких зацепок</i>` // Текстовое представление перехода
+            };
+            setGameLog([...gameLog, errorLogEntry]);
+        }
 
         if (logTextRef.current) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
@@ -46,7 +60,7 @@ function GameDialog(props) {
                 {gameLog.map((log) => {
                     return (                    
                         <div key={log.id} className="log-article">
-                            <h2>{log.title}</h2>
+                            {log.title && <h2>{log.title}</h2>}
                             {log.subtitle && <h3>{log.subtitle}</h3>}
                             <article className="article" dangerouslySetInnerHTML={{ __html: log.body }}></article>
                         </div>

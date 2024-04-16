@@ -126,7 +126,7 @@ area {
 
 .article {
   text-align: left;
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .log-text {
@@ -134,4 +134,8 @@ area {
   padding: 15px 0;
   overflow-y: auto;
   scroll-behavior: smooth;
+}
+
+h3 {
+  margin-bottom: 0;
 }
