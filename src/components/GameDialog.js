@@ -16,19 +16,20 @@ function GameDialog(props) {
             return;
         }
 
-        const newId = gameLog[gameLog.length - 1].id + 1;
-        const newLogEntry = {
-            id: newId,
-            title: null,
-            subtitle: null,
-            body: `<i>Переход в локацию ${value}</i>` // Текстовое представление перехода
-        };
-    
-        setGameLog([...gameLog, newLogEntry]);
-
+        const newId = gameLog[gameLog.length - 1].id + 1; 
         const nextLocation = props.QuestLocations[value];
+
         if (nextLocation) {
-            setGameLog([...gameLog, { ...nextLocation, id: newId + 2 }]);
+            if (gameLog[gameLog.length - 1].code == value) {
+                alert("Вы уже находитесь в этой локации");
+                return;
+            }
+            setGameLog([...gameLog, { 
+                ...nextLocation, 
+                id: newId,
+                subtitle: value,
+                code: value,
+             }]);
         } else {
             const errorLogEntry = {
                 id: newId,

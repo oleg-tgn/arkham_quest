@@ -1,7 +1,5 @@
 const QuestLocations = {
     'А8': {
-        title: null,
-        subtitle: 'A8',
         body: `
         <p>
             <b>Профессор Генри Армитедж</b> не отзывается на
