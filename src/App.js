@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import GameLog from "./data/GameLog";
 import ImageMap from "./components/ImageMap";
 
 import Header from "./components/Header";
@@ -23,7 +22,7 @@ function App() {
           </div>
           <div className='content'>
             <Routes>
-              <Route path="/" element={<GameDialog GameLog={GameLog}/>} />
+              <Route path="/" element={<GameDialog/>} />
               <Route path="/AddressBook" element={<AddressBook />} />
             </Routes>
           </div>

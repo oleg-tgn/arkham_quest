@@ -1,16 +1,23 @@
 import React, { useRef, useState, useEffect } from 'react';
+import GameLog from "../data/GameLog";
+import QuestLocations from "../data/QuestLocations";
 
 function GameDialog(props) {    
-    const inputRef = useRef(null);
+    const inputDistrict = useRef(null);
+    const inputNumber = useRef(null);
+
     const logTextRef = useRef(null);
-    const [gameLog, setGameLog] = useState(props.GameLog);
+    const [gameLog, setGameLog] = useState(GameLog);
 
     const [initialized, setInitialized] = useState(false);
 
     function handleNewLocation(event) {
         event.preventDefault();
+        if (!inputDistrict.current.value || !inputNumber.current.value) {
+            return;
+        }
 
-        const value = inputRef.current.value.toUpperCase();
+        const value = inputDistrict.current.value + inputNumber.current.value;
                 
         if (/[^а-яА-Я0-9\s]/.test(value)) {
             alert('Пожалуйста, используйте русскую раскладку');
@@ -18,7 +25,7 @@ function GameDialog(props) {
         }
 
         const newId = gameLog[gameLog.length - 1].id + 1; 
-        const nextLocation = props.QuestLocations[value];
+        const nextLocation = QuestLocations[value];
 
         if (nextLocation) {
             if (gameLog[gameLog.length - 1].code == value) {
@@ -70,8 +77,21 @@ function GameDialog(props) {
                 })}
             </div>            
             <form onSubmit={handleNewLocation} className="form">
-                <input type="text" className="input" placeholder="Напишите код локации, например 'A1'"
-                    ref={inputRef}/>
+                <label>Локация: </label>
+                <select ref={inputDistrict}>
+                    <option value="" >Выбирите локацию</option>
+                    <option value="А">А — Аптаун </option>
+                    <option value="Д">Д — Даунтаун</option>
+                    <option value="И">И — Исттаун</option>
+                    <option value="Н">Н — Нортсайд</option>
+                    <option value="Р">Р — Ривертаун</option>
+                    <option value="Т">Т — Торговый район </option>
+                    <option value="У">У — Университетский район</option>
+                    <option value="Ф">Ф — Френч-хилл</option>
+                </select>
+                <label>Код: </label>
+                <input type="number" min="1" max="100" className="input" placeholder="Напишите номер локации. Например '10'"
+                    ref={inputNumber}/>
                 <button type="submit" className="button">Перейти в локацию</button>
             </form>        
         </div>        

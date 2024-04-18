@@ -126,8 +126,20 @@ area {
 
 .form {
   display: flex;
+  align-items: center;
   flex-direction: row;
   margin-top: auto;
+  border-top: 1px solid #ccc;
+  height: 36px;
+}
+
+.form label {
+  display: flex;
+  padding: 0 10px;
+}
+
+.form select {
+  height: 36px;
 }
 
 .input {
@@ -137,7 +149,9 @@ area {
 }
 
 .button {
+  width: 100px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .article {
