@@ -23,8 +23,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: 25px;
   color: white;
 }
 
@@ -43,6 +43,10 @@
 
 .container {
   display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .container img {
@@ -100,9 +104,19 @@ area {
   width: 50%;
 }
 
-.col-65 {
+.menu {
   display: flex;
-  width: 65%;
+  flex: 15%; /* Занимает 25% горизонтального пространства */
+}
+
+.content {
+  display: flex;
+  width: 70%;
+}
+
+.score {
+  display: flex;
+  width: 15%;
 }
 
 .log-article {

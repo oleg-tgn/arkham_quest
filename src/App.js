@@ -2,26 +2,30 @@ import './App.css';
 import GameDialog from './components/GameDialog';
 import GameLog from "./resourse/GameLog";
 import QuestLocations from "./resourse/QuestLocations";
+import ImageMap from "./components/ImageMap";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from "./components/Header";
+import Menu from "./components/Menu";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Тайны Аркхэма</h1>
-      </header>
+    <Router>
+      <div className="App">
+        <Header />
 
-      <div className='container'>
-        <div className='col-65'>
-          <GameDialog
-            GameLog={GameLog} 
-            QuestLocations={QuestLocations}
-          />
+        <div className='container'>
+          <div className='menu'>
+            <Menu />
+          </div>
+          <div className='content'>
+            <Routes>
+              <Route path="/" element={<GameDialog GameLog={GameLog}/>} />
+            </Routes>
+          </div>
+          <div className='score'></div>
         </div>
-        {/* <div className='col'> */}
-          {/* <ImageMap /> */}
-        {/* </div> */}
       </div>
-    </div>
+    </Router>
   );
 }
 
