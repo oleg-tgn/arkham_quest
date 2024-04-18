@@ -1,11 +1,15 @@
-import './App.css';
-import GameDialog from './components/GameDialog';
-import GameLog from "./resourse/GameLog";
-import QuestLocations from "./resourse/QuestLocations";
-import ImageMap from "./components/ImageMap";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import GameLog from "./data/GameLog";
+import ImageMap from "./components/ImageMap";
+
 import Header from "./components/Header";
 import Menu from "./components/Menu";
+
+import GameDialog from './components/GameDialog';
+import AddressBook from "./components/AddressBook";
+
+import './App.css';
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
           <div className='content'>
             <Routes>
               <Route path="/" element={<GameDialog GameLog={GameLog}/>} />
+              <Route path="/AddressBook" element={<AddressBook />} />
             </Routes>
           </div>
           <div className='score'></div>

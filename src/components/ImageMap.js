@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import mapAreas from '../resourse/mapAreas'
+import mapAreas from '../data/mapAreas'
 import arkhemMap from '../img/arkhemMap.jpg'
 
 const ImageMap = () => {
