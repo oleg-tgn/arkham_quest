@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { StateProvider } from './contexts/StateContext';
 
 import ImageMap from "./components/ImageMap";
 
@@ -12,24 +13,26 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
+    <StateProvider>
+      <Router>
+        <div className="App">
+          <Header />
 
-        <div className='container'>
-          <div className='menu'>
-            <Menu />
+          <div className='container'>
+            <div className='menu'>
+              <Menu />
+            </div>
+            <div className='content'>
+              <Routes>
+                <Route path="/" element={<GameDialog/>} />
+                <Route path="/AddressBook" element={<AddressBook />} />
+              </Routes>
+            </div>
+            <div className='score'></div>
           </div>
-          <div className='content'>
-            <Routes>
-              <Route path="/" element={<GameDialog/>} />
-              <Route path="/AddressBook" element={<AddressBook />} />
-            </Routes>
-          </div>
-          <div className='score'></div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </StateProvider>
   );
 }
 

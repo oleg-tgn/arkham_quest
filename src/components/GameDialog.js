@@ -1,13 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import GameLog from "../data/GameLog";
 import QuestLocations from "../data/QuestLocations";
+
+import { useStateContext } from '../contexts/StateContext';
 
 function GameDialog(props) {    
     const inputDistrict = useRef(null);
     const inputNumber = useRef(null);
 
     const logTextRef = useRef(null);
-    const [gameLog, setGameLog] = useState(GameLog);
+    // const [gameLog, setGameLog] = useState(GameLog);
+    const { gameLog, setGameLog } = useStateContext();
 
     const [initialized, setInitialized] = useState(false);
 
