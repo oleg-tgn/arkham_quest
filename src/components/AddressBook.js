@@ -26,7 +26,7 @@ function AddressBook(props) {
     // useEffect to handle changes in AddressBookData or filterText
     useEffect(() => {
         filterAddresses({ target: { value: addressBookFilterText } }); // Reapply filtering on data update
-    }, [AddressBookData]); // Dependency on AddressBookData to re-filter if it changes
+    }, [addressBookFilterText, filterAddresses]); // Dependency on AddressBookData to re-filter if it changes
 
     useEffect(() => {
         if (inputRef.current) {
