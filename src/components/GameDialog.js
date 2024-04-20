@@ -84,7 +84,7 @@ function GameDialog(props) {
                 logTextNode.removeEventListener('scroll', handleScroll);
             }
         };
-    }, []);
+    }, [setGameLogScrollPosition]);
     
 
     // Эффект для прокрутки
@@ -93,7 +93,7 @@ function GameDialog(props) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
             setGameLogScrollPosition(logTextRef.current.scrollHeight);
         }
-    }, [gameLog, initialized]);  // Зависимость от gameLog, прокрутка после обновления DOM
+    }, [gameLog, initialized, setGameLogScrollPosition]);  // Зависимость от gameLog, прокрутка после обновления DOM
 
     return (
         <div className="arckhem-logs">
