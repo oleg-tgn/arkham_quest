@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import QuestLocations from "../data/QuestLocations";
 import { useStateContext } from '../contexts/StateContext';
 
@@ -11,8 +11,6 @@ function GameDialog(props) {
     const { gameLog, setGameLog } = useStateContext();
 
     //const { gameLogScrollPosition, setGameLogScrollPosition } = useStateContext();
-
-    const [initialized, setInitialized] = useState(false);
 
     function handleNewLocation(event) {
         event.preventDefault();
@@ -49,27 +47,20 @@ function GameDialog(props) {
                 body: `<i>В локации ${value} вы не нашли никаких зацепок.</i>` // Текстовое представление перехода
             };
             setGameLog([...gameLog, errorLogEntry]);
-        }
+        }        
+    }
 
-        if (logTextRef.current) {
+    useEffect(() => {
+        if (logTextRef.current && gameLog.length > 1) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
         }
-        if (!initialized) {
-            setInitialized(true);  // Устанавливаем инициализацию при первом добавлении
-        }
-    }
+    }, [gameLog.length]);
 
     // useEffect(() => {
     //     if (logTextRef.current) {
     //         logTextRef.current.scrollTop = gameLogScrollPosition;
     //     }
     // }, []);
-
-    useEffect(() => {
-        if (initialized && logTextRef.current && gameLog.length && logTextRef.current.scrollTop !== logTextRef.current.scrollHeight) {
-            logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
-        }
-    }, [gameLog.length, initialized]);
 
     // const handleScroll = useCallback(() => {
     //     setGameLogScrollPosition(logTextRef.current.scrollTop);
