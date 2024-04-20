@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import QuestLocations from "../data/QuestLocations";
-
 import { useStateContext } from '../contexts/StateContext';
 
 function GameDialog(props) {    
@@ -10,6 +9,14 @@ function GameDialog(props) {
     const logTextRef = useRef(null);
     // const [gameLog, setGameLog] = useState(GameLog);
     const { gameLog, setGameLog } = useStateContext();
+
+    const { gameLogScrollPosition, setGameLogScrollPosition } = useStateContext();
+    useEffect(() => {
+        if (logTextRef.current) {
+            logTextRef.current.scrollTop = gameLogScrollPosition;
+        }
+    }, []);
+
 
     const [initialized, setInitialized] = useState(false);
 
@@ -58,10 +65,30 @@ function GameDialog(props) {
         }
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setGameLogScrollPosition(logTextRef.current.scrollTop);
+        };
+    
+        // Проверяем, что logTextRef.current существует перед добавлением или удалением слушателя
+        if (logTextRef.current) {
+            logTextRef.current.addEventListener('scroll', handleScroll);
+        }
+    
+        // Возвращаем функцию очистки, которая также проверяет существование logTextRef.current
+        return () => {
+            if (logTextRef.current) {
+                logTextRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+    
+
     // Эффект для прокрутки
     useEffect(() => {
         if (initialized && logTextRef.current) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
+            setGameLogScrollPosition(logTextRef.current.scrollHeight);
         }
     }, [gameLog, initialized]);  // Зависимость от gameLog, прокрутка после обновления DOM
 
