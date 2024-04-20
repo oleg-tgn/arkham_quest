@@ -11,12 +11,6 @@ function GameDialog(props) {
     const { gameLog, setGameLog } = useStateContext();
 
     const { gameLogScrollPosition, setGameLogScrollPosition } = useStateContext();
-    useEffect(() => {
-        if (logTextRef.current) {
-            logTextRef.current.scrollTop = gameLogScrollPosition;
-        }
-    }, [gameLogScrollPosition]);
-
 
     const [initialized, setInitialized] = useState(false);
 
@@ -66,6 +60,12 @@ function GameDialog(props) {
     }
 
     useEffect(() => {
+        if (logTextRef.current) {
+            logTextRef.current.scrollTop = gameLogScrollPosition;
+        }
+    }, []);
+
+    useEffect(() => {
         // Copy the current value of the ref to a variable
         const logTextNode = logTextRef.current;
     
@@ -84,8 +84,7 @@ function GameDialog(props) {
                 logTextNode.removeEventListener('scroll', handleScroll);
             }
         };
-    }, [setGameLogScrollPosition]);
-    
+    }, []);
 
     // Эффект для прокрутки
     useEffect(() => {
@@ -93,7 +92,7 @@ function GameDialog(props) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
             setGameLogScrollPosition(logTextRef.current.scrollHeight);
         }
-    }, [gameLog, initialized, setGameLogScrollPosition]);  // Зависимость от gameLog, прокрутка после обновления DOM
+    }, [gameLog, initialized]);  // Зависимость от gameLog, прокрутка после обновления DOM
 
     return (
         <div className="arckhem-logs">
