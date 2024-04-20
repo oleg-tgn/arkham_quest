@@ -15,7 +15,7 @@ function GameDialog(props) {
         if (logTextRef.current) {
             logTextRef.current.scrollTop = gameLogScrollPosition;
         }
-    }, []);
+    }, [gameLogScrollPosition]);
 
 
     const [initialized, setInitialized] = useState(false);
@@ -37,7 +37,7 @@ function GameDialog(props) {
         const nextLocation = QuestLocations[value];
 
         if (nextLocation) {
-            if (gameLog[gameLog.length - 1].code == value) {
+            if (gameLog[gameLog.length - 1].code === value) {
                 alert("Вы уже находитесь в этой локации");
                 return;
             }
@@ -66,19 +66,22 @@ function GameDialog(props) {
     }
 
     useEffect(() => {
+        // Copy the current value of the ref to a variable
+        const logTextNode = logTextRef.current;
+    
         const handleScroll = () => {
-            setGameLogScrollPosition(logTextRef.current.scrollTop);
+            setGameLogScrollPosition(logTextNode.scrollTop);
         };
     
-        // Проверяем, что logTextRef.current существует перед добавлением или удалением слушателя
-        if (logTextRef.current) {
-            logTextRef.current.addEventListener('scroll', handleScroll);
+        // Use the local variable instead of the ref directly
+        if (logTextNode) {
+            logTextNode.addEventListener('scroll', handleScroll);
         }
     
-        // Возвращаем функцию очистки, которая также проверяет существование logTextRef.current
+        // Return the cleanup function that uses the same local variable
         return () => {
-            if (logTextRef.current) {
-                logTextRef.current.removeEventListener('scroll', handleScroll);
+            if (logTextNode) {
+                logTextNode.removeEventListener('scroll', handleScroll);
             }
         };
     }, []);

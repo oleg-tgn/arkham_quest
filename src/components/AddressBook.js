@@ -32,7 +32,7 @@ function AddressBook(props) {
         if (inputRef.current) {
             inputRef.current.value = addressBookFilterText;
         }
-    }, []);
+    }, [addressBookFilterText]);
 
     return (
         <div>
