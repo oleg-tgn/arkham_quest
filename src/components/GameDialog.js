@@ -10,7 +10,7 @@ function GameDialog(props) {
     // const [gameLog, setGameLog] = useState(GameLog);
     const { gameLog, setGameLog } = useStateContext();
 
-    const { gameLogScrollPosition, setGameLogScrollPosition } = useStateContext();
+    //const { gameLogScrollPosition, setGameLogScrollPosition } = useStateContext();
 
     const [initialized, setInitialized] = useState(false);
 
@@ -59,40 +59,31 @@ function GameDialog(props) {
         }
     }
 
-    useEffect(() => {
-        if (logTextRef.current) {
-            logTextRef.current.scrollTop = gameLogScrollPosition;
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (logTextRef.current) {
+    //         logTextRef.current.scrollTop = gameLogScrollPosition;
+    //     }
+    // }, []);
 
     useEffect(() => {
-        // Copy the current value of the ref to a variable
-        const logTextNode = logTextRef.current;
-    
-        const handleScroll = () => {
-            setGameLogScrollPosition(logTextNode.scrollTop);
-        };
-    
-        // Use the local variable instead of the ref directly
-        if (logTextNode) {
-            logTextNode.addEventListener('scroll', handleScroll);
-        }
-    
-        // Return the cleanup function that uses the same local variable
-        return () => {
-            if (logTextNode) {
-                logTextNode.removeEventListener('scroll', handleScroll);
-            }
-        };
-    }, []);
-
-    // Эффект для прокрутки
-    useEffect(() => {
-        if (initialized && logTextRef.current) {
+        if (initialized && logTextRef.current && gameLog.length && logTextRef.current.scrollTop !== logTextRef.current.scrollHeight) {
             logTextRef.current.scrollTop = logTextRef.current.scrollHeight;
-            setGameLogScrollPosition(logTextRef.current.scrollHeight);
         }
-    }, [gameLog, initialized]);  // Зависимость от gameLog, прокрутка после обновления DOM
+    }, [gameLog.length, initialized]);
+
+    // const handleScroll = useCallback(() => {
+    //     setGameLogScrollPosition(logTextRef.current.scrollTop);
+    // }, [setGameLogScrollPosition]);
+
+    // useEffect(() => {
+    //     const logTextNode = logTextRef.current;
+    //     if (logTextNode) {
+    //         logTextNode.addEventListener('scroll', handleScroll);
+    //         return () => {
+    //             logTextNode.removeEventListener('scroll', handleScroll);
+    //         };
+    //     }
+    // }, [handleScroll]);
 
     return (
         <div className="arckhem-logs">
