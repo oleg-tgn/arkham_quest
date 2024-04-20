@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useStateContext } from '../contexts/StateContext';
 import AddressBookData from '../data/AddressBookData';
 
@@ -13,15 +13,15 @@ function AddressBook(props) {
     // State to store the filtered data
     const [filteredData, setFilteredData] = useState(AddressBookData);
 
-    // Function to handle the input change and filter the addresses
-    const filterAddresses = (event) => {
+   // Memoizing filterAddresses function to prevent unnecessary re-renders
+   const filterAddresses = useCallback((event) => {
         const searchText = event.target.value;
         setAddressBookFilterText(searchText);
-        const filtered = AddressBookData.filter(item => 
+        const filtered = AddressBookData.filter(item =>
             item.name.toLowerCase().includes(searchText.toLowerCase())
         );
         setFilteredData(filtered);
-    };
+    }, [setAddressBookFilterText]);  // Only recreate if setAddressBookFilterText changes
 
     // useEffect to handle changes in AddressBookData or filterText
     useEffect(() => {
