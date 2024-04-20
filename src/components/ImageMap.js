@@ -3,7 +3,6 @@ import mapAreas from '../data/mapAreas'
 import arkhemMap from '../img/arkhemMap.jpg'
 
 const ImageMap = () => {
-    const [selectedBrick, setSelectedBrick] = useState('');
     const [tooltip, setTooltip] = useState({ visible: false, text: '', x: 0, y: 0 });
     const imgRef = useRef(null);  // Reference to the image element
 
@@ -51,7 +50,7 @@ const ImageMap = () => {
             let xi = polygon[i], yi = polygon[i + 1];
             let xj = polygon[j], yj = polygon[j + 1];
     
-            let intersect = ((yi > y) != (yj > y))
+            let intersect = ((yi > y) !== (yj > y))
                 && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
             if (intersect) inside = !inside;
             j = i;

@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { StateProvider } from './contexts/StateContext';
 
-import ImageMap from "./components/ImageMap";
-
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 
