@@ -98,6 +98,7 @@ function GameDialog(props) {
                     <option value="И">И — Исттаун</option>
                     <option value="Н">Н — Нортсайд</option>
                     <option value="Р">Р — Ривертаун</option>
+                    <option value="С">С — Саутсайд</option>
                     <option value="Т">Т — Торговый район </option>
                     <option value="У">У — Университетский район</option>
                     <option value="Ф">Ф — Френч-хилл</option>
