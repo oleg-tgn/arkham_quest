@@ -6,6 +6,7 @@ import Menu from "./components/Menu";
 
 import GameDialog from './components/GameDialog';
 import AddressBook from "./components/AddressBook";
+import Questions from "./components/Questions";
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<GameDialog/>} />
                 <Route path="/AddressBook" element={<AddressBook />} />
+                <Route path="/Questions" element={<Questions />} />
               </Routes>
             </div>
             <div className='score'></div>

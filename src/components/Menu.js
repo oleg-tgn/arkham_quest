@@ -7,7 +7,8 @@ const Menu = () => {
       <nav>
         <ul className='menu'>
           <li><NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Расследование</NavLink></li> 
-          <li><NavLink to="/AddressBook">Адресная книга</NavLink></li>             
+          <li><NavLink to="/AddressBook">Адресная книга</NavLink></li>
+          <li><NavLink to="/Questions">Вопросы</NavLink></li>             
         </ul>
       </nav>
     </div>
