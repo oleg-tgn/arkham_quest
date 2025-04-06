@@ -8,27 +8,24 @@ import GameDialog from './components/GameDialog';
 import AddressBook from "./components/AddressBook";
 import Questions from "./components/Questions";
 
-import './App.css';
-
 const App: React.FC = () => {
   return (
     <StateProvider>
       <Router>
-        <div className="App">
+        <div className="App bg-arkham-background bg-cover bg-center text-arkham-text h-screen overflow-y-auto">
           <Header />
-
-          <div className='container'>
-            <div className='menu'>
+          <div className="container max-w-screen-lg mx-auto flex flex-row gap-4 p-4">
+            <div className="menu w-[15%] bg-arkham-panel rounded-xl shadow-md p-3 text-arkham-text">
               <Menu />
             </div>
-            <div className='content'>
+            <div className="content w-[70%] h-[calc(100vh-150px)] border border-arkham-border bg-arkham-panel rounded-xl shadow-inner p-4 overflow-y-auto">
               <Routes>
-                <Route path="/" element={<GameDialog/>} />
+                <Route path="/" element={<GameDialog />} />
                 <Route path="/AddressBook" element={<AddressBook />} />
                 <Route path="/Questions" element={<Questions />} />
               </Routes>
             </div>
-            <div className='score'></div>
+            <div className="score w-[15%]"></div>
           </div>
         </div>
       </Router>
