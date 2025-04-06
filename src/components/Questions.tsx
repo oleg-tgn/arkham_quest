@@ -1,10 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 
-const Questions: React.FC = () => {
+const Questions: FC = () => {
   return (
-    <div className="arckhem-logs">
-      <div className="log-text">
-        <article className="article">
+    <div className="space-y-4">
+      <div
+        className="bg-arkham-book shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-150px)] overflow-y-auto"
+      >
+        <article className="article list-decimal list-inside space-y-2">
           <ol>
             <li>Как зовут девушку, упавшую в обморок на улице?</li>
             <li>Как зовут подозрительного человека, сбежавшего с места преступления?</li>

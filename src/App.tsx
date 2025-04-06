@@ -12,20 +12,20 @@ const App: React.FC = () => {
   return (
     <StateProvider>
       <Router>
-        <div className="App bg-arkham-background bg-cover bg-center text-arkham-text h-screen overflow-y-auto">
+        <div className="App bg-arkham-background bg-cover bg-center h-screen">
           <Header />
-          <div className="container max-w-screen-lg mx-auto flex flex-row gap-4 p-4">
-            <div className="menu w-[15%] bg-arkham-panel rounded-xl shadow-md p-3 text-arkham-text">
+          <div className="container max-w-screen-lg mx-auto flex flex-row p-4">
+            <div className="menu w-40 py-3">
               <Menu />
             </div>
-            <div className="content w-[70%] h-[calc(100vh-150px)] border border-arkham-border bg-arkham-panel rounded-xl shadow-inner p-4 overflow-y-auto">
+            <div className="content w-[800px] h-[calc(100vh-150px)]">
               <Routes>
                 <Route path="/" element={<GameDialog />} />
                 <Route path="/AddressBook" element={<AddressBook />} />
                 <Route path="/Questions" element={<Questions />} />
               </Routes>
             </div>
-            <div className="score w-[15%]"></div>
+            <div className="score w-40"></div>
           </div>
         </div>
       </Router>

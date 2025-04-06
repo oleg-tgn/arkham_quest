@@ -36,26 +36,34 @@ const AddressBook: React.FC = () => {
   }, [addressBookFilterText]);
 
   return (
-    <div>
-      <div className="log-text" ref={logTextRef}>
+    <div className="space-y-4">
+      {/* Бумажный фон со списком */}
+      <div
+        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-200px)] overflow-y-auto"
+        ref={logTextRef}
+      >
         {filteredData.map((addressRecord, index, array) => {
           const previous = index > 0 ? array[index - 1].name[0] : null;
           const current = addressRecord.name[0];
           return (
             <React.Fragment key={index}>
-              {current !== previous && <h2>{current}</h2>}
-              <div className="addressRecord">
-                <span className="addressRecord__name">{addressRecord.name}</span>
-                <span className="addressRecord__code">{addressRecord.code}</span>
+              {current !== previous && (
+                <h2 className="text-xl font-bold text-[#3b3b3b] mt-4 mb-2">{current}</h2>
+              )}
+              <div className="flex justify-between border-b border-gray-300 py-1 text-sm">
+                <span>{addressRecord.name}</span>
+                <span className="text-gray-500">{addressRecord.code}</span>
               </div>
             </React.Fragment>
           );
         })}
       </div>
-      <div className="form">
+
+      {/* Форма поиска */}
+      <div className="bg-arkham-book form px-4 py-3 rounded-md shadow flex items-center gap-2">
         <input
           type="text"
-          className="input"
+          className="p-2 border border-gray-300 rounded w-full text-sm"
           placeholder="Начните вводить искомую локацию или имя"
           ref={inputRef}
           onChange={filterAddresses}
