@@ -1,4 +1,6 @@
-const QuestLocations = {
+import { QuestLocationMap } from "../types/QuestLocation";
+
+export const QuestLocations: QuestLocationMap = {
     'А8': {
         body: `
             <p>
@@ -1075,5 +1077,3 @@ const QuestLocations = {
         `
     },
 };
-
-export default QuestLocations;

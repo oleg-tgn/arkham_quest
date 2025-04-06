@@ -1,4 +1,6 @@
-const AddressBookData= [
+import { AddressBookEntry } from "../types/AddressBookEntry";
+
+export const AddressBookData: AddressBookEntry[] = [
     { code: "Н55", name: "А У." },
     { code: "Н76", name: "Аберкромби Г." },
     { code: "А37", name: "Авила А." },
@@ -1163,5 +1165,3 @@ const AddressBookData= [
     { code: "С13", name: "Юнионе Итальяно " },
     { code: "А64", name: "Яблонский У." },
 ];
-
-export default AddressBookData;

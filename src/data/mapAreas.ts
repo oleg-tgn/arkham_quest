@@ -1,4 +1,6 @@
-const mapAreas = {
+import { MapArea } from '../types/MapArea';
+
+const mapAreas: Record<string, MapArea> = {
     "А8": {        
         name: "Профессор Генри Армитедж",
         coord: "1062,4355,1165,4358,1165,4430,1066,4427"
