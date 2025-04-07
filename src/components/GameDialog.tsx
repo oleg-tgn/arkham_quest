@@ -117,7 +117,7 @@ const GameDialog: React.FC = () => {
 
       <button
         type="submit"
-        className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#a16c45] text-white text-sm font-bold rounded shadow whitespace-nowrap"
+        className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap"
       >
         Перейти
       </button>
