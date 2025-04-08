@@ -26,18 +26,24 @@ const GoogleAuth = () => {
   };
 
   return (
-    <div className="text-white flex flex-col items-center gap-2">
+    <div className="flex items-center gap-3 text-white px-4 py-2">
       {user ? (
         <>
-          <img src={user.photoURL ?? ""} alt="Avatar" className="w-10 h-10 rounded-full" />
-          <p className="text-sm">{user.displayName}</p>
-          <button onClick={logout} className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">
+          {user.photoURL ? (<img src={user.photoURL ?? ""} alt="Avatar" className="w-8 h-8 rounded-full grayscale" />) : null}
+          <span className="text-sm">{user.displayName}</span>
+          <button
+            onClick={logout}
+            className="text-xs bg-[#8b5e3c] hover:bg-[#a16c45] px-3 py-1 rounded shadow"
+          >
             Выйти
           </button>
         </>
       ) : (
-        <button onClick={login} className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">
-          Войти с Google
+        <button
+          onClick={login}
+          className="text-xs bg-[#8b5e3c] hover:bg-[#a16c45] px-3 py-1 rounded shadow font-semibold"
+        >
+          Войти
         </button>
       )}
     </div>
