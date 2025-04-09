@@ -8,7 +8,23 @@ import GameDialog from './components/GameDialog';
 import AddressBook from "./components/AddressBook";
 import Questions from "./components/Questions";
 
+import {
+  doc,
+  setDoc,
+} from "firebase/firestore";
+import { db } from './firebase';
+
+
 const App: React.FC = () => {
+
+  setTimeout(() => {
+    const ref = doc(db, "debug", "test-write");
+    setDoc(ref, { hello: "world123" })
+      .then(() => console.log("✅ Write success"))
+      .catch((err) => console.error("❌ Write failed", err));
+  }, 2000);
+
+  
   return (
     <StateProvider>
       <Router>

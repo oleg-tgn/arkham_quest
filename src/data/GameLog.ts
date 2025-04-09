@@ -1,6 +1,6 @@
 import { GameLogEntry } from "../types/GameLogEntry";
 
-const GameLog: GameLogEntry[] = [
+export const GameLog: GameLogEntry[] = [
     {
         id: 0,
         title: "Ростки Зла",
