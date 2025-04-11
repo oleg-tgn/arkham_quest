@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Menu: FC = () => {
+export const Menu: FC = () => {
   const tabClass = 'block px-4 py-2 rounded-l-lg w-40 text-right text-md font-medium shadow-md transition-colors';
   const activeClass = 'bg-amber-900 text-amber-100 ';
   const inactiveClass = 'bg-zinc-800 hover:bg-zinc-700 text-slate-100';
@@ -42,4 +42,3 @@ const Menu: FC = () => {
   );
 };
 
-export default Menu;

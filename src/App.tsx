@@ -1,30 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { StateProvider } from './contexts/StateContext';
 
-import Header from "./components/Header";
-import Menu from "./components/Menu";
+import { Header } from "./components/Header";
+import { Menu } from "./components/Menu";
 
-import GameDialog from './components/GameDialog';
-import AddressBook from "./components/AddressBook";
-import Questions from "./components/Questions";
-
-import {
-  doc,
-  setDoc,
-} from "firebase/firestore";
-import { db } from './firebase';
-
+import { GameDialog } from './pages/GameDialog';
+import { AddressBook } from "./pages/AddressBook";
+import { Questions } from "./pages/Questions";
 
 const App: React.FC = () => {
-
-  setTimeout(() => {
-    const ref = doc(db, "debug", "test-write");
-    setDoc(ref, { hello: "world123" })
-      .then(() => console.log("✅ Write success"))
-      .catch((err) => console.error("❌ Write failed", err));
-  }, 2000);
-
-  
   return (
     <StateProvider>
       <Router>

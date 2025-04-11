@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import GoogleAuth from "./GoogleAuth";
 
-
-const Header: FC = () => {
+export const Header: FC = () => {
   return (
     <header className="relative text-center py-5">
       <h1 className="text-4xl font-bold tracking-wide text-green-100 drop-shadow-[0_0_6px_rgba(169,255,191,0.4)]">
@@ -14,5 +13,3 @@ const Header: FC = () => {
     </header>
   );
 };
-
-export default Header;

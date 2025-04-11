@@ -7,7 +7,7 @@ type AddressRecord = {
   code: string;
 };
 
-const AddressBook: React.FC = () => {
+export const AddressBook: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
 
@@ -73,4 +73,3 @@ const AddressBook: React.FC = () => {
   );
 };
 
-export default AddressBook;

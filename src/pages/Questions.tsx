@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-const Questions: FC = () => {
+export const Questions: FC = () => {
   return (
     <div className="space-y-4">
       <div
@@ -26,5 +26,3 @@ const Questions: FC = () => {
     </div>
   );
 };
-
-export default Questions;

@@ -12,18 +12,10 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-console.log(firebaseConfig);
-
-console.log("🔥 Firebase projectId:", firebaseConfig.projectId);
-
-
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-export const db = getFirestore(app);
-
-console.log("messagingSenderId:", import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID);
-
+export const db = getFirestore(app, 'arkham-quest');
 
 console.log("Connecting to Firebase project:", firebaseConfig.projectId);

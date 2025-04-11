@@ -71,5 +71,3 @@ export const GameLog: GameLogEntry[] = [
         `
     }
 ];
-
-export default GameLog;

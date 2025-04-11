@@ -1,4 +1,3 @@
-// src/components/GoogleAuth.tsx
 import { useEffect, useState } from "react";
 import { auth, provider } from "../firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/auth";

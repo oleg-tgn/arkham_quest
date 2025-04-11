@@ -3,7 +3,7 @@ import { QuestLocations } from "../data/QuestLocations";
 import { useStateContext } from '../contexts/StateContext';
 import { GameLogEntry } from '../types/GameLogEntry';
 
-const GameDialog: React.FC = () => {
+export const GameDialog: React.FC = () => {
   const inputDistrict = useRef<HTMLSelectElement>(null);
   const inputNumber = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
@@ -60,7 +60,6 @@ const GameDialog: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      {/* Бумажный фон для текста */}
       <div
         className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed max-h-[calc(100vh-200px)] overflow-y-auto"
         ref={logTextRef}
@@ -81,7 +80,6 @@ const GameDialog: React.FC = () => {
         ))}
       </div>
 
-      {/* Форма перехода */}
       <form
         onSubmit={handleNewLocation}
         className="w-full bg-arkham-book form px-4 py-3 rounded-md shadow flex flex-wrap gap-2 items-center"
@@ -125,5 +123,3 @@ const GameDialog: React.FC = () => {
     </div>
   );
 };
-
-export default GameDialog;
