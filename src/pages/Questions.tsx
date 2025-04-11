@@ -4,7 +4,7 @@ export const Questions: FC = () => {
   return (
     <div className="space-y-4">
       <div
-        className="bg-arkham-book shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-150px)] overflow-y-auto"
+        className="bg-arkham-book shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-125px)] overflow-y-auto"
       >
         <article className="article list-decimal list-inside space-y-2">
           <ol>

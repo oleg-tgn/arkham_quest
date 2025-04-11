@@ -37,9 +37,8 @@ export const AddressBook: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      {/* Бумажный фон со списком */}
       <div
-        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-200px)] overflow-y-auto"
+        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-175px)] overflow-y-auto"
         ref={logTextRef}
       >
         {filteredData.map((addressRecord, index, array) => {
@@ -59,7 +58,6 @@ export const AddressBook: React.FC = () => {
         })}
       </div>
 
-      {/* Форма поиска */}
       <div className="bg-arkham-book form px-4 py-3 rounded-md shadow flex items-center gap-2">
         <input
           type="text"

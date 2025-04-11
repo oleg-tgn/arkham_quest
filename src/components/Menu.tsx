@@ -30,6 +30,15 @@ export const Menu: FC = () => {
         </li>
         <li>
           <NavLink 
+            to="/Map" 
+            className={({ isActive }) =>
+              `${tabClass} ${isActive ? activeClass : inactiveClass}`
+            }>
+            Карта
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
             to="/Questions" 
             className={({ isActive }) =>
               `${tabClass} ${isActive ? activeClass : inactiveClass}`

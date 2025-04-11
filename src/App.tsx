@@ -7,6 +7,7 @@ import { Menu } from "./components/Menu";
 import { GameDialog } from './pages/GameDialog';
 import { AddressBook } from "./pages/AddressBook";
 import { Questions } from "./pages/Questions";
+import { Map } from "./pages/Map";
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<GameDialog />} />
                 <Route path="/AddressBook" element={<AddressBook />} />
+                <Route path="/Map" element={<Map />} />
                 <Route path="/Questions" element={<Questions />} />
               </Routes>
             </div>

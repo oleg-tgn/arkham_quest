@@ -61,7 +61,7 @@ export const GameDialog: React.FC = () => {
   return (
     <div className="space-y-4">
       <div
-        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed max-h-[calc(100vh-200px)] overflow-y-auto"
+        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed max-h-[calc(100vh-175px)] overflow-y-auto"
         ref={logTextRef}
       >
         {gameLog.map((log) => (
