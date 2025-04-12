@@ -11,6 +11,13 @@ interface GameState {
 
   addressBookFilterText: string;
   setAddressBookFilterText: (text: string) => void;
+
+  mapTransform: {
+    scale: number;
+    positionX: number;
+    positionY: number;
+  };
+  setMapTransform: (transform: { scale: number; positionX: number; positionY: number }) => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -22,4 +29,11 @@ export const useGameStore = create<GameState>((set) => ({
 
   addressBookFilterText: '',
   setAddressBookFilterText: (text) => set({ addressBookFilterText: text }),
+
+  mapTransform: {
+    scale: 0.1,
+    positionX: 0,
+    positionY: 0,
+  },
+  setMapTransform: (transform) => set({ mapTransform: transform }),
 }));
