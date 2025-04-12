@@ -1,14 +1,16 @@
 import React, { useRef, useEffect, FormEvent } from 'react';
 import { QuestLocations } from "../data/QuestLocations";
-import { useStateContext } from '../contexts/StateContext';
 import { GameLogEntry } from '../types/GameLogEntry';
+import { useGameStore } from '../store/useGameStore'; // ← новый импорт Zustand стора
 
 export const GameDialog: React.FC = () => {
   const inputDistrict = useRef<HTMLSelectElement>(null);
   const inputNumber = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
 
-  const { gameLog, setGameLog } = useStateContext();
+  // Zustand state
+  const gameLog = useGameStore(state => state.gameLog);
+  const setGameLog = useGameStore(state => state.setGameLog);
 
   function handleNewLocation(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -84,42 +86,42 @@ export const GameDialog: React.FC = () => {
         onSubmit={handleNewLocation}
         className="w-full bg-arkham-book form px-4 py-3 rounded-md shadow flex flex-wrap gap-2 items-center"
       >
-      <label className="text-sm font-semibold text-gray-700" htmlFor="district">Локация:</label>
-      <select
-        ref={inputDistrict}
-        id="district"
-        className="p-2 border border-gray-500 rounded text-sm flex-1 min-w-[100px]"
-      >
-        <option value="">Выберите</option>
-        <option value="А">А — Аптаун</option>
-        <option value="Д">Д — Даунтаун</option>
-        <option value="И">И — Исттаун</option>
-        <option value="Н">Н — Нортсайд</option>
-        <option value="Р">Р — Ривертаун</option>
-        <option value="С">С — Саутсайд</option>
-        <option value="Т">Т — Торговый район</option>
-        <option value="У">У — Университет</option>
-        <option value="Ф">Ф — Френч-хилл</option>
-      </select>
+        <label className="text-sm font-semibold text-gray-700" htmlFor="district">Локация:</label>
+        <select
+          ref={inputDistrict}
+          id="district"
+          className="p-2 border border-gray-500 rounded text-sm flex-1 min-w-[100px]"
+        >
+          <option value="">Выберите</option>
+          <option value="А">А — Аптаун</option>
+          <option value="Д">Д — Даунтаун</option>
+          <option value="И">И — Исттаун</option>
+          <option value="Н">Н — Нортсайд</option>
+          <option value="Р">Р — Ривертаун</option>
+          <option value="С">С — Саутсайд</option>
+          <option value="Т">Т — Торговый район</option>
+          <option value="У">У — Университет</option>
+          <option value="Ф">Ф — Френч-хилл</option>
+        </select>
 
-      <label className="text-sm font-semibold text-gray-700" htmlFor="location">Код:</label>
-      <input
-        type="number"
-        min="1"
-        max="100"
-        id="location"
-        ref={inputNumber}
-        className="p-2 border border-gray-500 rounded text-sm w-20"
-        placeholder="№"
-      />
+        <label className="text-sm font-semibold text-gray-700" htmlFor="location">Код:</label>
+        <input
+          type="number"
+          min="1"
+          max="100"
+          id="location"
+          ref={inputNumber}
+          className="p-2 border border-gray-500 rounded text-sm w-20"
+          placeholder="№"
+        />
 
-      <button
-        type="submit"
-        className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap"
-      >
-        Перейти
-      </button>
-    </form>
+        <button
+          type="submit"
+          className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap"
+        >
+          Перейти
+        </button>
+      </form>
     </div>
   );
 };

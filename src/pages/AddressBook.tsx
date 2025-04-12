@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
-import { useStateContext } from '../contexts/StateContext';
 import { AddressBookData } from '../data/AddressBookData';
+import { useGameStore } from '../store/useGameStore'; // ← Zustand store
 
 type AddressRecord = {
   name: string;
@@ -11,7 +11,8 @@ export const AddressBook: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
 
-  const { addressBookFilterText, setAddressBookFilterText } = useStateContext();
+  const addressBookFilterText = useGameStore(state => state.addressBookFilterText);
+  const setAddressBookFilterText = useGameStore(state => state.setAddressBookFilterText);
 
   const [filteredData, setFilteredData] = useState<AddressRecord[]>(AddressBookData);
 
@@ -70,4 +71,3 @@ export const AddressBook: React.FC = () => {
     </div>
   );
 };
-
