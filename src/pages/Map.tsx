@@ -3,21 +3,26 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import arkhemMap from '/img/map.jpg';
 import { useGameStore } from '../store/useGameStore';
 
- {/* Опционально: кнопки управления */}
-  {/* <div className="flex gap-2 p-2">
+{
+  /* Опционально: кнопки управления */
+}
+{
+  /* <div className="flex gap-2 p-2">
     <button onClick={() => zoomIn()} className={buttonClassName}>+</button>
     <button onClick={() => zoomOut()} className={buttonClassName}>-</button>
     <button onClick={() => resetTransform()} className={buttonClassName}>Reset</button>
-  </div> */}
+  </div> */
+}
 
 export const Map: FC = () => {
-  const buttonClassName = 'px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap';
+  // const buttonClassName =
+  //   'px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap';
 
   const { mapTransform, setMapTransform } = useGameStore();
   const initialTransform = mapTransform;
 
   return (
-    <div className="bg-arkham-book h-[calc(100vh-125px)] w-full overflow-hidden relative">
+    <div className="arkhem-content h-[calc(100vh-125px)]">
       <TransformWrapper
         initialScale={initialTransform.scale}
         initialPositionX={initialTransform.positionX}
@@ -28,13 +33,13 @@ export const Map: FC = () => {
         doubleClick={{ disabled: true }} // по желанию
         pinch={{ step: 5 }}
         panning={{ velocityDisabled: true }}
-        onTransformed={(ref) => {
+        onTransformed={ref => {
           setMapTransform({
             scale: ref.state.scale,
             positionX: ref.state.positionX,
             positionY: ref.state.positionY,
           });
-        }}  
+        }}
       >
         <TransformComponent
           wrapperStyle={{

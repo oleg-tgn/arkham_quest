@@ -16,15 +16,18 @@ export const AddressBook: React.FC = () => {
 
   const [filteredData, setFilteredData] = useState<AddressRecord[]>(AddressBookData);
 
-  const filterAddresses = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const searchText = event.target.value;
-    setAddressBookFilterText(searchText);
+  const filterAddresses = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const searchText = event.target.value;
+      setAddressBookFilterText(searchText);
 
-    const filtered = AddressBookData.filter((item) =>
-      item.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setFilteredData(filtered);
-  }, [setAddressBookFilterText]);
+      const filtered = AddressBookData.filter(item =>
+        item.name.toLowerCase().includes(searchText.toLowerCase()),
+      );
+      setFilteredData(filtered);
+    },
+    [setAddressBookFilterText],
+  );
 
   useEffect(() => {
     filterAddresses({ target: { value: addressBookFilterText } } as ChangeEvent<HTMLInputElement>);
@@ -38,10 +41,7 @@ export const AddressBook: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <div
-        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed h-[calc(100vh-175px)] overflow-y-auto"
-        ref={logTextRef}
-      >
+      <div className="arkhem-content h-[calc(100vh-175px)]" ref={logTextRef}>
         {filteredData.map((addressRecord, index, array) => {
           const previous = index > 0 ? array[index - 1].name[0] : null;
           const current = addressRecord.name[0];

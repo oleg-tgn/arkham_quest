@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, FormEvent } from 'react';
-import { QuestLocations } from "../data/QuestLocations";
+import { QuestLocations } from '../data/QuestLocations';
 import { GameLogEntry } from '../types/GameLogEntry';
 import { useGameStore } from '../store/useGameStore'; // ← новый импорт Zustand стора
 
@@ -31,7 +31,7 @@ export const GameDialog: React.FC = () => {
 
     if (nextLocation) {
       if (gameLog[gameLog.length - 1].code === value) {
-        alert("Вы уже находитесь в этой локации");
+        alert('Вы уже находитесь в этой локации');
         return;
       }
 
@@ -62,22 +62,14 @@ export const GameDialog: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <div
-        className="bg-arkham-book bg-[#f8f5e4] shadow-lg rounded-lg p-7 font-serif text-gray-800 leading-relaxed max-h-[calc(100vh-175px)] overflow-y-auto"
-        ref={logTextRef}
-      >
-        {gameLog.map((log) => (
+      <div className="arkhem-content h-[calc(100vh-175px)]" ref={logTextRef}>
+        {gameLog.map(log => (
           <div key={log.id} className="log-article mb-6">
-            {log.title && (
-              <h2 className="text-2xl font-bold text-[#3b3b3b] mb-2">{log.title}</h2>
-            )}
+            {log.title && <h2 className="text-2xl font-bold text-[#3b3b3b] mb-2">{log.title}</h2>}
             {log.subtitle && (
               <h3 className="text-lg font-semibold text-[#5a5a5a] mb-2">{log.subtitle}</h3>
             )}
-            <article
-              className="article"
-              dangerouslySetInnerHTML={{ __html: log.body }}
-            />
+            <article className="article" dangerouslySetInnerHTML={{ __html: log.body }} />
           </div>
         ))}
       </div>
@@ -86,7 +78,9 @@ export const GameDialog: React.FC = () => {
         onSubmit={handleNewLocation}
         className="w-full bg-arkham-book form px-4 py-3 rounded-md shadow flex flex-wrap gap-2 items-center"
       >
-        <label className="text-sm font-semibold text-gray-700" htmlFor="district">Локация:</label>
+        <label className="text-sm font-semibold text-gray-700" htmlFor="district">
+          Локация:
+        </label>
         <select
           ref={inputDistrict}
           id="district"
@@ -104,7 +98,9 @@ export const GameDialog: React.FC = () => {
           <option value="Ф">Ф — Френч-хилл</option>
         </select>
 
-        <label className="text-sm font-semibold text-gray-700" htmlFor="location">Код:</label>
+        <label className="text-sm font-semibold text-gray-700" htmlFor="location">
+          Код:
+        </label>
         <input
           type="number"
           min="1"
