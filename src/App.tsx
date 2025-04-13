@@ -7,12 +7,13 @@ import { GameDialog } from './pages/GameDialog';
 import { AddressBook } from './pages/AddressBook';
 import { Questions } from './pages/Questions';
 import { Map } from './pages/Map';
-import { GameInitializer } from './GameInitializer';
+// import { GameInitializer } from './GameInitializer';
+import { SessionSelector } from './pages/SessionSelector';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <GameInitializer />
+      {/* <GameInitializer /> */}
       <div className="App bg-arkham-background bg-cover bg-center h-screen">
         <Header />
         <div className="container mx-auto flex flex-row justify-center p-4">
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <div className="content w-[800px] h-[calc(100vh-100px)] flex flex-col gap-3">
             <Routes>
               <Route path="/" element={<GameDialog />} />
+              <Route path="/session" element={<SessionSelector />} />
               <Route path="/AddressBook" element={<AddressBook />} />
               <Route path="/Map" element={<Map />} />
               <Route path="/Questions" element={<Questions />} />

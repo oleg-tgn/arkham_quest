@@ -11,6 +11,14 @@ export const Menu = () => {
       <ul className="flex flex-col gap-4">
         <li>
           <NavLink
+            to="/session"
+            className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
+          >
+            Новая игра
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/"
             className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
           >
