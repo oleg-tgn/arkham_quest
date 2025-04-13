@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { Typography } from '../components/Typography';
+import { Layout } from '../components/Layout';
 
-export const Questions: FC = () => {
+export const Questions = () => {
   return (
-    <div className="space-y-4">
-      <div className="arkhem-content h-[calc(100vh-125px)]">
-        <article className="article list-decimal list-inside space-y-2">
+    <Layout variant="book" heightClass="h-full">
+      <Layout variant="content">
+        <Typography variant="text">
           <ol>
             <li>Как зовут девушку, упавшую в обморок на улице?</li>
             <li>Как зовут подозрительного человека, сбежавшего с места преступления?</li>
@@ -19,8 +20,8 @@ export const Questions: FC = () => {
             <li>Почему этот человек приходил именно ночью и чем он там занимался?</li>
             <li>Какое слово было подписано повсюду в Имперском особняке?</li>
           </ol>
-        </article>
-      </div>
-    </div>
+        </Typography>
+      </Layout>
+    </Layout>
   );
 };

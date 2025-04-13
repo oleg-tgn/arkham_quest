@@ -1,9 +1,11 @@
-import React, { useRef, useEffect, FormEvent } from 'react';
+import { useRef, useEffect, FormEvent } from 'react';
 import { QuestLocations } from '../data/QuestLocations';
 import { GameLogEntry } from '../types/GameLogEntry';
-import { useGameStore } from '../store/useGameStore'; // ← новый импорт Zustand стора
+import { useGameStore } from '../store/useGameStore';
+import { Typography } from '../components/Typography';
+import { Layout } from '../components/Layout';
 
-export const GameDialog: React.FC = () => {
+export const GameDialog = () => {
   const inputDistrict = useRef<HTMLSelectElement>(null);
   const inputNumber = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
@@ -61,63 +63,66 @@ export const GameDialog: React.FC = () => {
   }, [gameLog.length]);
 
   return (
-    <div className="space-y-4">
-      <div className="arkhem-content h-[calc(100vh-175px)]" ref={logTextRef}>
-        {gameLog.map(log => (
-          <div key={log.id} className="log-article mb-6">
-            {log.title && <h2 className="text-2xl font-bold text-[#3b3b3b] mb-2">{log.title}</h2>}
-            {log.subtitle && (
-              <h3 className="text-lg font-semibold text-[#5a5a5a] mb-2">{log.subtitle}</h3>
-            )}
-            <article className="article" dangerouslySetInnerHTML={{ __html: log.body }} />
-          </div>
-        ))}
-      </div>
+    <>
+      <Layout variant="book" heightClass="h-full" ref={logTextRef}>
+        <Layout variant="content">
+          {gameLog.map(log => (
+            <div key={log.id} className="mb-6">
+              {log.title ? <Typography variant="heading-1">{log.title}</Typography> : null}
+              {log.subtitle ? <Typography variant="heading-2">{log.subtitle}</Typography> : null}
+              <Typography variant="text">
+                <article dangerouslySetInnerHTML={{ __html: log.body }} />
+              </Typography>
+            </div>
+          ))}
+        </Layout>
+      </Layout>
 
-      <form
-        onSubmit={handleNewLocation}
-        className="w-full bg-arkham-book form px-4 py-3 rounded-md shadow flex flex-wrap gap-2 items-center"
-      >
-        <label className="text-sm font-semibold text-gray-700" htmlFor="district">
-          Локация:
-        </label>
-        <select
-          ref={inputDistrict}
-          id="district"
-          className="p-2 border border-gray-500 rounded text-sm flex-1 min-w-[100px]"
-        >
-          <option value="">Выберите</option>
-          <option value="А">А — Аптаун</option>
-          <option value="Д">Д — Даунтаун</option>
-          <option value="И">И — Исттаун</option>
-          <option value="Н">Н — Нортсайд</option>
-          <option value="Р">Р — Ривертаун</option>
-          <option value="С">С — Саутсайд</option>
-          <option value="Т">Т — Торговый район</option>
-          <option value="У">У — Университет</option>
-          <option value="Ф">Ф — Френч-хилл</option>
-        </select>
+      <Layout variant="book" heightClass="h-[80px]">
+        <form onSubmit={handleNewLocation} className="h-full">
+          <Layout variant="form">
+            <label className="text-sm font-semibold text-gray-700" htmlFor="district">
+              Локация:
+            </label>
+            <select
+              ref={inputDistrict}
+              id="district"
+              className="p-2 border border-gray-500 rounded text-sm flex-1 min-w-[100px]"
+            >
+              <option value="">Выберите</option>
+              <option value="А">А — Аптаун</option>
+              <option value="Д">Д — Даунтаун</option>
+              <option value="И">И — Исттаун</option>
+              <option value="Н">Н — Нортсайд</option>
+              <option value="Р">Р — Ривертаун</option>
+              <option value="С">С — Саутсайд</option>
+              <option value="Т">Т — Торговый район</option>
+              <option value="У">У — Университет</option>
+              <option value="Ф">Ф — Френч-хилл</option>
+            </select>
 
-        <label className="text-sm font-semibold text-gray-700" htmlFor="location">
-          Код:
-        </label>
-        <input
-          type="number"
-          min="1"
-          max="100"
-          id="location"
-          ref={inputNumber}
-          className="p-2 border border-gray-500 rounded text-sm w-20"
-          placeholder="№"
-        />
+            <label className="text-sm font-semibold text-gray-700" htmlFor="location">
+              Код:
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="100"
+              id="location"
+              ref={inputNumber}
+              className="p-2 border border-gray-500 rounded text-sm w-20"
+              placeholder="№"
+            />
 
-        <button
-          type="submit"
-          className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap"
-        >
-          Перейти
-        </button>
-      </form>
-    </div>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap"
+            >
+              Перейти
+            </button>
+          </Layout>
+        </form>
+      </Layout>
+    </>
   );
 };

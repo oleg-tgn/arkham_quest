@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import arkhemMap from '/img/map.jpg';
 import { useGameStore } from '../store/useGameStore';
+import { Layout } from '../components/Layout';
 
 {
   /* Опционально: кнопки управления */
@@ -14,7 +14,7 @@ import { useGameStore } from '../store/useGameStore';
   </div> */
 }
 
-export const Map: FC = () => {
+export const Map = () => {
   // const buttonClassName =
   //   'px-4 py-2 bg-[#8b5e3c] hover:bg-[#6b3f22] text-white text-sm font-bold rounded shadow whitespace-nowrap';
 
@@ -22,7 +22,7 @@ export const Map: FC = () => {
   const initialTransform = mapTransform;
 
   return (
-    <div className="arkhem-content h-[calc(100vh-125px)]">
+    <Layout variant="book" heightClass="h-full">
       <TransformWrapper
         initialScale={initialTransform.scale}
         initialPositionX={initialTransform.positionX}
@@ -61,6 +61,6 @@ export const Map: FC = () => {
           />
         </TransformComponent>
       </TransformWrapper>
-    </div>
+    </Layout>
   );
 };

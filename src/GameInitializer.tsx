@@ -10,7 +10,7 @@ export const GameInitializer = () => {
 
   useEffect(() => {
     if (user) {
-      loadGameLog(user.uid).then((savedLog) => {
+      loadGameLog(user.uid).then(savedLog => {
         if (savedLog && savedLog.length > 0) {
           setGameLog(savedLog);
         }

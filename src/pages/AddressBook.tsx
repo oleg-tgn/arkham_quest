@@ -1,15 +1,16 @@
-import React, { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
+import { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
 import { AddressBookData } from '../data/AddressBookData';
-import { useGameStore } from '../store/useGameStore'; // ← Zustand store
+import { useGameStore } from '../store/useGameStore';
+import { Layout } from '../components/Layout';
+import { Typography } from '../components/Typography';
 
 type AddressRecord = {
   name: string;
   code: string;
 };
 
-export const AddressBook: React.FC = () => {
+export const AddressBook = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const logTextRef = useRef<HTMLDivElement>(null);
 
   const addressBookFilterText = useGameStore(state => state.addressBookFilterText);
   const setAddressBookFilterText = useGameStore(state => state.setAddressBookFilterText);
@@ -40,34 +41,36 @@ export const AddressBook: React.FC = () => {
   }, [addressBookFilterText]);
 
   return (
-    <div className="space-y-4">
-      <div className="arkhem-content h-[calc(100vh-175px)]" ref={logTextRef}>
-        {filteredData.map((addressRecord, index, array) => {
-          const previous = index > 0 ? array[index - 1].name[0] : null;
-          const current = addressRecord.name[0];
-          return (
-            <React.Fragment key={index}>
-              {current !== previous && (
-                <h2 className="text-xl font-bold text-[#3b3b3b] mt-4 mb-2">{current}</h2>
-              )}
-              <div className="flex justify-between border-b border-gray-300 py-1 text-sm">
-                <span>{addressRecord.name}</span>
-                <span className="text-gray-500">{addressRecord.code}</span>
+    <>
+      <Layout variant="book" heightClass="h-full">
+        <Layout variant="content">
+          {filteredData.map((addressRecord, index, array) => {
+            const previous = index > 0 ? array[index - 1].name[0] : null;
+            const current = addressRecord.name[0];
+            return (
+              <div key={index}>
+                {current !== previous && <Typography variant="heading-2">{current}</Typography>}
+                <Layout variant="addressLine">
+                  <Typography variant="text-small">{addressRecord.name}</Typography>
+                  <Typography variant="text-small">{addressRecord.code}</Typography>
+                </Layout>
               </div>
-            </React.Fragment>
-          );
-        })}
-      </div>
+            );
+          })}
+        </Layout>
+      </Layout>
 
-      <div className="bg-arkham-book form px-4 py-3 rounded-md shadow flex items-center gap-2">
-        <input
-          type="text"
-          className="p-2 border border-gray-300 rounded w-full text-sm"
-          placeholder="Начните вводить искомую локацию или имя"
-          ref={inputRef}
-          onChange={filterAddresses}
-        />
-      </div>
-    </div>
+      <Layout variant="book" heightClass="h-[80px]">
+        <Layout variant="form">
+          <input
+            type="text"
+            className="p-2 border border-gray-300 rounded w-full text-sm"
+            placeholder="Начните вводить искомую локацию или имя"
+            ref={inputRef}
+            onChange={filterAddresses}
+          />
+        </Layout>
+      </Layout>
+    </>
   );
 };
