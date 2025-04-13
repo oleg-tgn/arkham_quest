@@ -16,7 +16,7 @@ export const GameInitializer = () => {
         }
       });
     }
-  }, [user]);
+  }, [user, setGameLog]);
 
   useEffect(() => {
     if (user && gameLog.length > 0) {
