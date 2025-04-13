@@ -15,8 +15,8 @@ const App: React.FC = () => {
       <GameInitializer />
       <div className="App bg-arkham-background bg-cover bg-center h-screen">
         <Header />
-        <div className="container max-w-screen-lg mx-auto flex flex-row p-4">
-          <div className="menu w-40 py-3">
+        <div className="container mx-auto flex flex-row justify-center p-4">
+          <div className="w-50">
             <Menu />
           </div>
           <div className="content w-[800px] h-[calc(100vh-100px)] flex flex-col gap-3">

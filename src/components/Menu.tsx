@@ -1,48 +1,43 @@
-import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const Menu: FC = () => {
-  const tabClass = 'block px-4 py-2 rounded-l-lg w-40 text-right text-md font-medium shadow-md transition-colors';
-  const activeClass = 'bg-amber-900 text-amber-100 ';
-  const inactiveClass = 'bg-zinc-800 hover:bg-zinc-700 text-slate-100';
+export const Menu = () => {
+  const tabBase =
+    'block w-full text-right text-md transition-all duration-200 px-6 py-3 hover:opacity-100 bg-[url("/img/tab.png")] bg-no-repeat bg-cover bg-center';
+  const tabImage = (isActive: boolean) =>
+    ` ${isActive ? 'scale-120 -translate-x-4 z-10' : 'opacity-75 translate-x-0'}`;
 
   return (
-    <nav>
-      <ul className="space-y-3">
+    <nav className="overflow-hidden pl-8 py-3">
+      <ul className="flex flex-col gap-4">
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) =>
-              `${tabClass} ${isActive ? activeClass : inactiveClass}`
-            }
+            className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
           >
             Расследование
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/AddressBook" 
-            className={({ isActive }) =>
-              `${tabClass} ${isActive ? activeClass : inactiveClass}`
-            }>
+          <NavLink
+            to="/AddressBook"
+            className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
+          >
             Адресная книга
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/Map" 
-            className={({ isActive }) =>
-              `${tabClass} ${isActive ? activeClass : inactiveClass}`
-            }>
+          <NavLink
+            to="/Map"
+            className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
+          >
             Карта
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/Questions" 
-            className={({ isActive }) =>
-              `${tabClass} ${isActive ? activeClass : inactiveClass}`
-            }>
+          <NavLink
+            to="/Questions"
+            className={({ isActive }) => `${tabBase} ${tabImage(isActive)} text-white`}
+          >
             Вопросы
           </NavLink>
         </li>
@@ -50,4 +45,3 @@ export const Menu: FC = () => {
     </nav>
   );
 };
-
