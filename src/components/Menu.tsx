@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 
 export const Menu = () => {
   const tabBase =
-    'block w-full text-right text-md transition-all duration-200 px-6 py-3 hover:opacity-100 bg-[url("/img/tab.png")] bg-no-repeat bg-cover bg-center';
+    'block w-full text-right text-md transition-all duration-300 px-6 py-3 hover:brightness-100 bg-[url("/img/tab.png")] bg-no-repeat bg-cover bg-center';
   const tabImage = (isActive: boolean) =>
-    ` ${isActive ? 'scale-120 -translate-x-4 z-10' : 'opacity-75 translate-x-0'}`;
+    ` ${isActive ? 'scale-120 -translate-x-4 z-10' : 'filter brightness-75 translate-x-0'}`;
 
   return (
     <nav className="overflow-hidden pl-8 py-3">
