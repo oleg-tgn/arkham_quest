@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { auth, provider } from '../firebase';
 import { signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const GoogleAuth = () => {
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -15,6 +17,7 @@ const GoogleAuth = () => {
   const login = async () => {
     try {
       await signInWithPopup(auth, provider);
+      navigate('/home');
     } catch (err) {
       console.error(err);
     }

@@ -2,6 +2,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import arkhemMap from '/img/map.jpg';
 import { useGameStore } from '../store/useGameStore';
 import { Layout } from '../components/Layout';
+import { LayoutInvestigation } from '../components/LayoutInvestigation';
 
 {
   /* Опционально: кнопки управления */
@@ -22,45 +23,47 @@ export const Map = () => {
   const initialTransform = mapTransform;
 
   return (
-    <Layout variant="book" heightClass="h-full">
-      <TransformWrapper
-        initialScale={initialTransform.scale}
-        initialPositionX={initialTransform.positionX}
-        initialPositionY={initialTransform.positionY}
-        minScale={0.1}
-        maxScale={3}
-        wheel={{ step: 0.05 }}
-        doubleClick={{ disabled: true }} // по желанию
-        pinch={{ step: 5 }}
-        panning={{ velocityDisabled: true }}
-        onTransformed={ref => {
-          setMapTransform({
-            scale: ref.state.scale,
-            positionX: ref.state.positionX,
-            positionY: ref.state.positionY,
-          });
-        }}
-      >
-        <TransformComponent
-          wrapperStyle={{
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-            touchAction: 'none',
-          }}
-          contentStyle={{
-            width: 'fit-content',
-            height: 'fit-content',
+    <LayoutInvestigation>
+      <Layout variant="book" heightClass="h-full">
+        <TransformWrapper
+          initialScale={initialTransform.scale}
+          initialPositionX={initialTransform.positionX}
+          initialPositionY={initialTransform.positionY}
+          minScale={0.1}
+          maxScale={3}
+          wheel={{ step: 0.05 }}
+          doubleClick={{ disabled: true }} // по желанию
+          pinch={{ step: 5 }}
+          panning={{ velocityDisabled: true }}
+          onTransformed={ref => {
+            setMapTransform({
+              scale: ref.state.scale,
+              positionX: ref.state.positionX,
+              positionY: ref.state.positionY,
+            });
           }}
         >
-          <img
-            src={arkhemMap}
-            alt="Map"
-            draggable={false}
-            className="block max-w-none select-none"
-          />
-        </TransformComponent>
-      </TransformWrapper>
-    </Layout>
+          <TransformComponent
+            wrapperStyle={{
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+              touchAction: 'none',
+            }}
+            contentStyle={{
+              width: 'fit-content',
+              height: 'fit-content',
+            }}
+          >
+            <img
+              src={arkhemMap}
+              alt="Map"
+              draggable={false}
+              className="block max-w-none select-none"
+            />
+          </TransformComponent>
+        </TransformWrapper>
+      </Layout>
+    </LayoutInvestigation>
   );
 };

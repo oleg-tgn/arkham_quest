@@ -3,6 +3,7 @@ import { AddressBookData } from '../data/AddressBookData';
 import { useGameStore } from '../store/useGameStore';
 import { Layout } from '../components/Layout';
 import { Typography } from '../components/Typography';
+import { LayoutInvestigation } from '../components/LayoutInvestigation';
 
 type AddressRecord = {
   name: string;
@@ -41,7 +42,7 @@ export const AddressBook = () => {
   }, [addressBookFilterText]);
 
   return (
-    <>
+    <LayoutInvestigation>
       <Layout variant="book" heightClass="h-full">
         <Layout variant="content">
           {filteredData.map((addressRecord, index, array) => {
@@ -71,6 +72,6 @@ export const AddressBook = () => {
           />
         </Layout>
       </Layout>
-    </>
+    </LayoutInvestigation>
   );
 };

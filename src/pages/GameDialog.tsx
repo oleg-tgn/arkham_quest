@@ -4,6 +4,7 @@ import { GameLogEntry } from '../types/GameLogEntry';
 import { useGameStore } from '../store/useGameStore';
 import { Typography } from '../components/Typography';
 import { Layout } from '../components/Layout';
+import { LayoutInvestigation } from '../components/LayoutInvestigation';
 
 export const GameDialog = () => {
   const inputDistrict = useRef<HTMLSelectElement>(null);
@@ -63,7 +64,7 @@ export const GameDialog = () => {
   }, [gameLog.length]);
 
   return (
-    <>
+    <LayoutInvestigation>
       <Layout variant="book" heightClass="h-full" ref={logTextRef}>
         <Layout variant="content">
           {gameLog.map(log => (
@@ -123,6 +124,6 @@ export const GameDialog = () => {
           </Layout>
         </form>
       </Layout>
-    </>
+    </LayoutInvestigation>
   );
 };
