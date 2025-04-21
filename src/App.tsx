@@ -8,6 +8,10 @@ import { Home } from 'pages/Home';
 import PrivateRoute from 'components/PrivateRoute';
 import { Login } from 'pages/Login';
 import { useFirebaseGameSync } from 'hooks/useFirebaseGameSync';
+import { NewGame } from 'pages/NewGame';
+import { Continue } from 'pages/Continue/Continue';
+import { Archive } from 'pages/Archive';
+import { About } from 'pages/About';
 
 const App = () => {
   useFirebaseGameSync();
@@ -18,47 +22,21 @@ const App = () => {
         <Header />
         <div className="mx-auto flex flex-row justify-center p-4">
           <Routes>
+            {/* Публичный маршрут */}
             <Route path="/" element={<Login />} />
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/Investigation"
-              element={
-                <PrivateRoute>
-                  <GameDialog />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/AddressBook"
-              element={
-                <PrivateRoute>
-                  <AddressBook />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/Map"
-              element={
-                <PrivateRoute>
-                  <Map />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/Questions"
-              element={
-                <PrivateRoute>
-                  <Questions />
-                </PrivateRoute>
-              }
-            />
+
+            {/* Группа приватных маршрутов */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/newGame" element={<NewGame />} />
+              <Route path="/continue" element={<Continue />} />
+              <Route path="/archive" element={<Archive />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/Investigation" element={<GameDialog />} />
+              <Route path="/AddressBook" element={<AddressBook />} />
+              <Route path="/Map" element={<Map />} />
+              <Route path="/Questions" element={<Questions />} />
+            </Route>
           </Routes>
         </div>
       </div>

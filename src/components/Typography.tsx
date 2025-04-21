@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-type TypographyVariant = 'heading-1' | 'heading-2' | 'text' | 'text-small';
+type TypographyVariant = 'heading-1' | 'heading-2' | 'text' | 'text-small' | 'button';
 
 type Props = {
   children: ReactNode;
@@ -13,6 +13,7 @@ export const Typography = ({ children, variant }: Props) => {
     'heading-2': 'text-lg font-bold text-[#3b3b3b] my-2',
     text: 'text-gray-800',
     'text-small': 'text-gray-800 text-sm',
+    button: 'text-white text-sm font-bold',
   };
   return <div className={`font-serif ${classes[variant]}`}>{children}</div>;
 };
