@@ -1,10 +1,9 @@
 import { create } from 'zustand';
 import { GameLogEntry } from '../types/GameLogEntry';
-import { GameLog } from '../data/GameLog';
 
 type GameSession = {
   id: string;
-  chapter: string;
+  chapterId: string;
   language: string;
   log: GameLogEntry[];
   isFinished: boolean;
@@ -12,15 +11,11 @@ type GameSession = {
 };
 
 interface GameState {
-  // 🧾 Текущая сессия (прежняя логика)
-  gameLog: GameLogEntry[];
-  setGameLog: (log: GameLogEntry[]) => void;
-
   // 🔁 Мультисессии
   sessions: GameSession[];
   currentSessionId: string | null;
   setSessions: (sessions: GameSession[]) => void;
-  startNewSession: (chapter: string, language: string) => void;
+  startNewSession: (chapterId: string, language: string) => void;
   addLogEntry: (entry: GameLogEntry) => void;
   resetCurrentSession: () => void;
   finishCurrentSession: () => void;
@@ -43,36 +38,25 @@ interface GameState {
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
-  gameLog: GameLog,
-  setGameLog: log => set({ gameLog: log }),
-
   sessions: [],
   currentSessionId: null,
 
   setSessions: sessions => set({ sessions }),
 
-  startNewSession: (chapter, language) => {
+  startNewSession: (chapterId: string, language: string) => {
     const id = crypto.randomUUID();
     const newSession: GameSession = {
       id,
-      chapter,
+      chapterId,
       language,
       isFinished: false,
       createdAt: Date.now(),
-      log: [
-        {
-          id: 0,
-          title: 'Начало расследования',
-          subtitle: null,
-          body: '<i>Вы начинаете своё расследование...</i>',
-        },
-      ],
+      log: [],
     };
 
     set(state => ({
       sessions: [...state.sessions, newSession],
       currentSessionId: id,
-      gameLog: newSession.log, // обновляем старое поле тоже
     }));
   },
 
@@ -83,9 +67,8 @@ export const useGameStore = create<GameState>((set, get) => ({
     const updatedSessions = sessions.map(session =>
       session.id === currentSessionId ? { ...session, log: [...session.log, entry] } : session,
     );
-
+    console.log('Updated sessions:', updatedSessions);
     set({ sessions: updatedSessions });
-    set({ gameLog: [...get().gameLog, entry] }); // поддержка старого поля
   },
 
   resetCurrentSession: () => {
@@ -96,14 +79,13 @@ export const useGameStore = create<GameState>((set, get) => ({
       session.id === currentSessionId
         ? {
             ...session,
-            log: [session.log[0]],
+            log: [],
             isFinished: false,
           }
         : session,
     );
 
     set({ sessions: updatedSessions });
-    set({ gameLog: updatedSessions.find(s => s.id === currentSessionId)?.log || [] });
   },
 
   finishCurrentSession: () => {
@@ -115,27 +97,18 @@ export const useGameStore = create<GameState>((set, get) => ({
         ? {
             ...session,
             isFinished: true,
-            log: [
-              ...session.log,
-              {
-                id: session.log.length,
-                title: 'Конец игры',
-                subtitle: null,
-                body: '<i>Вы завершили игру.</i>',
-              },
-            ],
+            log: [...session.log],
           }
         : session,
     );
 
     set({ sessions: updatedSessions });
-    set({ gameLog: updatedSessions.find(s => s.id === currentSessionId)?.log || [] });
   },
 
   selectSession: id => {
     const session = get().sessions.find(s => s.id === id);
     if (session) {
-      set({ currentSessionId: id, gameLog: session.log });
+      set({ currentSessionId: id });
     }
   },
 

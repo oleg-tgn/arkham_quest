@@ -1,6 +1,13 @@
 import { QuestLocationMap } from '../types/QuestLocation';
 
 export const QuestLocations: QuestLocationMap = {
+  End: {
+    body: `
+        <p>
+            Вы завершили расследование.
+        </p>
+        `,
+  },
   А8: {
     body: `
             <p>
