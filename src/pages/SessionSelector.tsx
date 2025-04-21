@@ -24,7 +24,7 @@ export const SessionSelector = () => {
 
   const handleContinue = (sessionId: string) => {
     selectSession(sessionId);
-    navigate('/');
+    navigate('/Investigation');
   };
 
   return (

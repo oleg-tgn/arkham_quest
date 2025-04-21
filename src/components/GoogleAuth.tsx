@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { auth, provider } from "../firebase";
-import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/auth";
+import { useEffect, useState } from 'react';
+import { auth, provider } from '../firebase';
+import { signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
 
 const GoogleAuth = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
     });
     return () => unsubscribe();
@@ -25,7 +25,7 @@ const GoogleAuth = () => {
   };
 
   return (
-    <div className="flex items-center gap-3 text-white px-4 py-2">
+    <div className="flex items-center gap-3 text-white">
       {user ? (
         <>
           <span className="text-sm">{user.displayName}</span>
