@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { GameLogEntry } from '../types/GameLogEntry';
 
-type GameSession = {
+export type GameSession = {
   id: string;
   chapterId: string;
   language: string;

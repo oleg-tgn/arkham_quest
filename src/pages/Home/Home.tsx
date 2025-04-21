@@ -3,6 +3,7 @@ import { useGameStore } from 'store/useGameStore';
 import { Typography } from 'components/Typography';
 import { LayoutHome } from 'components/LayoutHome';
 import { chapters } from 'data/Chapters';
+import { Session } from './elements/Session';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ export const Home = () => {
     selectSession(sessionId);
     navigate('/Investigation');
   };
+
+  const activeSessions = sessions.filter(session => !session.isFinished);
+  const arhivedSessions = sessions.filter(session => session.isFinished);
 
   return (
     <LayoutHome>
@@ -35,27 +39,23 @@ export const Home = () => {
       </div>
 
       <Typography variant="heading-1">Продолжить игру</Typography>
-      {sessions.length === 0 && (
-        <p className="text-sm italic text-gray-600">Нет сохранённых сессий</p>
+      {activeSessions.length === 0 && (
+        <p className="text-sm italic text-gray-600">Нет сохранённых расследований</p>
       )}
       <div className="space-y-2">
-        {sessions.map(session => {
-          const chapter = chapters.find(c => c.id === session.chapterId);
+        {activeSessions.map(session => (
+          <Session session={session} handleClick={handleContinue} />
+        ))}
+      </div>
+      <Typography variant="heading-1">Архив</Typography>
+      {arhivedSessions.length === 0 && (
+        <p className="text-sm italic text-gray-600">Нет сохранённых расследований</p>
+      )}
 
-          return (
-            <button
-              key={session.id}
-              className="w-full px-4 py-2 hover:bg-gray-200/20 border rounded text-left text-sm cursor-pointer"
-              onClick={() => handleContinue(session.id)}
-            >
-              <strong>{chapter?.title || 'Неизвестная глава'}</strong> —{' '}
-              {session.language.toUpperCase()}
-              <br />
-              <br />
-              Записей: {session.log.length} {session.isFinished && '✓'}
-            </button>
-          );
-        })}
+      <div className="space-y-2">
+        {arhivedSessions.map(session => (
+          <Session session={session} handleClick={handleContinue} />
+        ))}
       </div>
     </LayoutHome>
   );
