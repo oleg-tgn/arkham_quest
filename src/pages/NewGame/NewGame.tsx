@@ -5,6 +5,7 @@ import { useGameStore } from 'store/useGameStore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { chapters } from 'data/Chapters';
 import { LayoutHome } from 'components/LayoutHome';
+import { Button } from 'components/Button';
 
 export const NewGame = () => {
   const navigate = useNavigate();
@@ -24,12 +25,9 @@ export const NewGame = () => {
       <div className="mb-8 space-y-2">
         {chapters.map(chapter => (
           <div key={chapter.id} className="space-x-2">
-            <button
-              className="w-full px-4 py-2 my-2 bg-[#4b3e2c] hover:bg-[#362c1e] text-white text-sm font-bold rounded shadow cursor-pointer"
-              onClick={() => handleStart(chapter.id, 'ru')}
-            >
+            <Button variant="story" onClick={() => handleStart(chapter.id, 'ru')}>
               {chapter.title}: {chapter.subtitle}
-            </button>
+            </Button>
           </div>
         ))}
       </div>

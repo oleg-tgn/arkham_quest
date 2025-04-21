@@ -1,6 +1,7 @@
 import { chapters } from 'data/Chapters';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from 'store/useGameStore';
+import { Button } from 'components/Button';
 
 type Props = {
   isFinished?: boolean;
@@ -27,16 +28,12 @@ export const Sessions = ({ isFinished = false }: Props) => {
         {currentSessions.map(session => {
           const chapter = chapters.find(c => c.id === session.chapterId);
           return (
-            <button
-              key={session.id}
-              className="w-full px-4 py-2 hover:bg-gray-200/20 border rounded text-left text-sm cursor-pointer"
-              onClick={() => handleContinue(session.id)}
-            >
-              <strong>{chapter?.title || 'Неизвестная глава'}</strong> —{' '}
-              {session.language.toUpperCase()}
+            <Button key={session.id} variant="story" onClick={() => handleContinue(session.id)}>
+              {chapter?.title}: {chapter?.subtitle} [{session.language.toUpperCase()}]
               <br />
-              Записей: {session.log.length} {session.isFinished && '✓'}
-            </button>
+              Записей: {session.log.length}
+              {session.isFinished && '✓'}
+            </Button>
           );
         })}
       </div>
