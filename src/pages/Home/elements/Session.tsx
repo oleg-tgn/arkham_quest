@@ -1,5 +1,5 @@
 import { chapters } from 'data/Chapters';
-import { GameSession } from 'store/useGameStore';
+import { GameSession } from 'types/GameSession';
 
 type Props = {
   session: GameSession;

@@ -1,21 +1,13 @@
 import { create } from 'zustand';
 import { GameLogEntry } from '../types/GameLogEntry';
-
-export type GameSession = {
-  id: string;
-  chapterId: string;
-  language: string;
-  log: GameLogEntry[];
-  isFinished: boolean;
-  createdAt: number;
-};
+import { GameSession } from 'types/GameSession';
 
 interface GameState {
   // 🔁 Мультисессии
   sessions: GameSession[];
   currentSessionId: string | null;
   setSessions: (sessions: GameSession[]) => void;
-  startNewSession: (chapterId: string, language: string) => void;
+  startNewSession: (chapterId: string, language: string, username: string) => void;
   addLogEntry: (entry: GameLogEntry) => void;
   resetCurrentSession: () => void;
   finishCurrentSession: () => void;
@@ -43,7 +35,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   setSessions: sessions => set({ sessions }),
 
-  startNewSession: (chapterId: string, language: string) => {
+  startNewSession: (chapterId: string, language: string, username: string) => {
     const id = crypto.randomUUID();
     const newSession: GameSession = {
       id,
@@ -51,6 +43,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       language,
       isFinished: false,
       createdAt: Date.now(),
+      username,
       log: [],
     };
 

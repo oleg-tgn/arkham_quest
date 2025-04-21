@@ -7,58 +7,63 @@ import { Map } from 'pages/Map';
 import { Home } from 'pages/Home';
 import PrivateRoute from 'components/PrivateRoute';
 import { Login } from 'pages/Login';
+import { useFirebaseGameSync } from 'hooks/useFirebaseGameSync';
 
-const App = () => (
-  <Router>
-    <div className="bg-arkham-background bg-cover bg-center h-screen">
-      <Header />
-      <div className="mx-auto flex flex-row justify-center p-4">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/Investigation"
-            element={
-              <PrivateRoute>
-                <GameDialog />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/AddressBook"
-            element={
-              <PrivateRoute>
-                <AddressBook />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/Map"
-            element={
-              <PrivateRoute>
-                <Map />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/Questions"
-            element={
-              <PrivateRoute>
-                <Questions />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
+const App = () => {
+  useFirebaseGameSync();
+
+  return (
+    <Router>
+      <div className="bg-arkham-background bg-cover bg-center h-screen">
+        <Header />
+        <div className="mx-auto flex flex-row justify-center p-4">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/Investigation"
+              element={
+                <PrivateRoute>
+                  <GameDialog />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/AddressBook"
+              element={
+                <PrivateRoute>
+                  <AddressBook />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/Map"
+              element={
+                <PrivateRoute>
+                  <Map />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/Questions"
+              element={
+                <PrivateRoute>
+                  <Questions />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
-  </Router>
-);
+    </Router>
+  );
+};
 
 export default App;

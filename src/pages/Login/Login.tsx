@@ -40,13 +40,13 @@ export const Login = () => {
         <p>
           Игра реализована в виде одностраничного веб-приложения (SPA) с использованием современных
           технологий:
-          <ul className="list-disc list-inside ml-4">
-            <li>React + TypeScript (основа проекта)</li>
-            <li>Tailwind CSS (стилизация)</li>
-            <li>Firebase (аутентификация, хранение игровой истории)</li>
-            <li>Vite (сборка)</li>
-          </ul>
         </p>
+        <ul className="list-disc list-inside ml-4">
+          <li>React + TypeScript (основа проекта)</li>
+          <li>Tailwind CSS (стилизация)</li>
+          <li>Firebase (аутентификация, хранение игровой истории)</li>
+          <li>Vite (сборка)</li>
+        </ul>
 
         <p>
           Проект разработан в свободное время и распространяется бесплатно как open-source. Исходный

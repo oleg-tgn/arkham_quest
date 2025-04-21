@@ -4,13 +4,17 @@ import { Typography } from 'components/Typography';
 import { LayoutHome } from 'components/LayoutHome';
 import { chapters } from 'data/Chapters';
 import { Session } from './elements/Session';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from 'hooks/firebase';
 
 export const Home = () => {
   const navigate = useNavigate();
   const { sessions, startNewSession, selectSession } = useGameStore();
+  const [user] = useAuthState(auth);
 
   const handleStart = (chapterId: string, languageCode: string) => {
-    startNewSession(chapterId, languageCode);
+    const username = user?.displayName || user?.email || 'Unknown';
+    startNewSession(chapterId, languageCode, username);
     navigate('/Investigation');
   };
 
@@ -44,7 +48,7 @@ export const Home = () => {
       )}
       <div className="space-y-2">
         {activeSessions.map(session => (
-          <Session session={session} handleClick={handleContinue} />
+          <Session session={session} handleClick={handleContinue} key={session.id} />
         ))}
       </div>
       <Typography variant="heading-1">Архив</Typography>
@@ -54,7 +58,7 @@ export const Home = () => {
 
       <div className="space-y-2">
         {arhivedSessions.map(session => (
-          <Session session={session} handleClick={handleContinue} />
+          <Session session={session} handleClick={handleContinue} key={session.id} />
         ))}
       </div>
     </LayoutHome>
