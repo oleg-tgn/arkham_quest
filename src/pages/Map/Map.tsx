@@ -22,7 +22,7 @@ export const Map = () => {
   const initialTransform = mapTransform;
 
   return (
-    <LayoutInvestigation>
+    <LayoutInvestigation isMapContent>
       <TransformWrapper
         initialScale={initialTransform.scale}
         initialPositionX={initialTransform.positionX}

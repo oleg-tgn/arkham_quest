@@ -5,9 +5,10 @@ import { Layout } from './Layout';
 type Props = {
   children: ReactNode;
   formSection?: ReactNode;
+  isMapContent?: boolean;
 };
 
-export const LayoutInvestigation = ({ children, formSection }: Props) => {
+export const LayoutInvestigation = ({ children, formSection, isMapContent }: Props) => {
   return (
     <>
       <div className="w-50">
@@ -15,7 +16,7 @@ export const LayoutInvestigation = ({ children, formSection }: Props) => {
       </div>
       <div className="w-[800px] h-[calc(100vh-100px)] flex flex-col gap-3">
         <Layout variant="book" heightClass="h-full">
-          <Layout variant="content">{children}</Layout>
+          {isMapContent ? children : <Layout variant="content">{children}</Layout>}
         </Layout>
 
         {formSection ? (
