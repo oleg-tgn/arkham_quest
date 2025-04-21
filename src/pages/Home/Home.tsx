@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useGameStore } from '../store/useGameStore';
-import { Typography } from '../components/Typography';
-import { LayoutHome } from '../components/LayoutHome';
+import { useGameStore } from 'store/useGameStore';
+import { Typography } from 'components/Typography';
+import { LayoutHome } from 'components/LayoutHome';
 
 const chapters = [
   { id: 'chapter1', title: 'Глава 1 — Туман над Аркхэмом' },

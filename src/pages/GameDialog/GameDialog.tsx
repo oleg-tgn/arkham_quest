@@ -1,17 +1,16 @@
 import { useRef, useEffect, FormEvent } from 'react';
-import { QuestLocations } from '../data/QuestLocations';
-import { GameLogEntry } from '../types/GameLogEntry';
-import { useGameStore } from '../store/useGameStore';
-import { Typography } from '../components/Typography';
-import { Layout } from '../components/Layout';
-import { LayoutInvestigation } from '../components/LayoutInvestigation';
+import { QuestLocations } from 'data/QuestLocations';
+import { GameLogEntry } from 'types/GameLogEntry';
+import { useGameStore } from 'store/useGameStore';
+import { Typography } from 'components/Typography';
+import { Layout } from 'components/Layout';
+import { LayoutInvestigation } from 'components/LayoutInvestigation';
 
 export const GameDialog = () => {
   const inputDistrict = useRef<HTMLSelectElement>(null);
   const inputNumber = useRef<HTMLInputElement>(null);
   const logTextRef = useRef<HTMLDivElement>(null);
 
-  // Zustand state
   const gameLog = useGameStore(state => state.gameLog);
   const setGameLog = useGameStore(state => state.setGameLog);
 
@@ -64,22 +63,8 @@ export const GameDialog = () => {
   }, [gameLog.length]);
 
   return (
-    <LayoutInvestigation>
-      <Layout variant="book" heightClass="h-full" ref={logTextRef}>
-        <Layout variant="content">
-          {gameLog.map(log => (
-            <div key={log.id} className="mb-6">
-              {log.title ? <Typography variant="heading-1">{log.title}</Typography> : null}
-              {log.subtitle ? <Typography variant="heading-2">{log.subtitle}</Typography> : null}
-              <Typography variant="text">
-                <article dangerouslySetInnerHTML={{ __html: log.body }} />
-              </Typography>
-            </div>
-          ))}
-        </Layout>
-      </Layout>
-
-      <Layout variant="book" heightClass="h-[80px]">
+    <LayoutInvestigation
+      formSection={
         <form onSubmit={handleNewLocation} className="h-full">
           <Layout variant="form">
             <label className="text-sm font-semibold text-gray-700" htmlFor="district">
@@ -123,7 +108,17 @@ export const GameDialog = () => {
             </button>
           </Layout>
         </form>
-      </Layout>
+      }
+    >
+      {gameLog.map(log => (
+        <div key={log.id} className="mb-6">
+          {log.title ? <Typography variant="heading-1">{log.title}</Typography> : null}
+          {log.subtitle ? <Typography variant="heading-2">{log.subtitle}</Typography> : null}
+          <Typography variant="text">
+            <article dangerouslySetInnerHTML={{ __html: log.body }} />
+          </Typography>
+        </div>
+      ))}
     </LayoutInvestigation>
   );
 };

@@ -1,12 +1,12 @@
-import GoogleAuth from '../components/GoogleAuth';
-import { Layout } from '../components/Layout';
+import GoogleAuth from 'components/GoogleAuth';
+import { Layout } from 'components/Layout';
 
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
-import { LayoutHome } from '../components/LayoutHome';
-import { Typography } from '../components/Typography';
+import { auth } from 'hooks/firebase';
+import { LayoutHome } from 'components/LayoutHome';
+import { Typography } from 'components/Typography';
 
 export const Login = () => {
   const [user, loading] = useAuthState(auth);

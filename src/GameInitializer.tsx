@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase';
-import { loadGameLog, saveGameLog } from './firebase/gameLogService';
+import { auth } from 'hooks/firebase';
+import { loadGameLog, saveGameLog } from 'hooks/gameLogService';
 import { useGameStore } from './store/useGameStore';
 
 export const GameInitializer = () => {

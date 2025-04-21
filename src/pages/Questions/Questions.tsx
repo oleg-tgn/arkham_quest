@@ -1,6 +1,6 @@
-import { Typography } from '../components/Typography';
-import { Layout } from '../components/Layout';
-import { LayoutInvestigation } from '../components/LayoutInvestigation';
+import { Typography } from 'components/Typography';
+import { Layout } from 'components/Layout';
+import { LayoutInvestigation } from 'components/LayoutInvestigation';
 
 export const Questions = () => {
   return (
