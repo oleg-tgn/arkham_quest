@@ -17,7 +17,6 @@ export const Session = ({ session, handleClick }: Props) => {
     >
       <strong>{chapter?.title || 'Неизвестная глава'}</strong> — {session.language.toUpperCase()}
       <br />
-      <br />
       Записей: {session.log.length} {session.isFinished && '✓'}
     </button>
   );

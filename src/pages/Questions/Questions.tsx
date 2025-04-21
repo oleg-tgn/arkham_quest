@@ -42,7 +42,7 @@ export const Questions = () => {
         </button>
       ) : (
         <Typography variant="text">
-          <i>Игра завершена.</i>
+          <i>Расследование завершено.</i>
         </Typography>
       )}
     </LayoutInvestigation>
