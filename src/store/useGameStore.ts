@@ -45,6 +45,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       createdAt: Date.now(),
       username,
       log: [],
+      answers: [],
     };
 
     set(state => ({
@@ -73,6 +74,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         ? {
             ...session,
             log: [],
+            answers: [],
             isFinished: false,
           }
         : session,
@@ -91,6 +93,7 @@ export const useGameStore = create<GameState>((set, get) => ({
             ...session,
             isFinished: true,
             log: [...session.log],
+            answers: [...session.answers],
           }
         : session,
     );

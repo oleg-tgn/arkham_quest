@@ -4,6 +4,7 @@ import { useGameStore } from 'store/useGameStore';
 import { Layout } from 'components/Layout';
 import { Typography } from 'components/Typography';
 import { LayoutInvestigation } from 'components/LayoutInvestigation';
+import { Input } from 'components/Input';
 
 type AddressRecord = {
   name: string;
@@ -44,9 +45,8 @@ export const AddressBook = () => {
   return (
     <LayoutInvestigation
       formSection={
-        <input
-          type="text"
-          className="p-2 border border-gray-300 rounded w-full text-sm"
+        <Input
+          name="addressBook"
           placeholder="Начните вводить искомую локацию или имя"
           ref={inputRef}
           onChange={filterAddresses}

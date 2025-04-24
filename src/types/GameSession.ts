@@ -8,4 +8,5 @@ export type GameSession = {
   isFinished: boolean;
   createdAt: number;
   username: string;
+  answers: string[];
 };
